@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\enjoy.cs\enjoy.cs\bin\Debug\enjoy.cs.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\enjoy.cs\enjoy.cs\bin\Debug\enjoy.cs.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\enjoy.cs\enjoy.cs\obj\x86\Debug\enjoy.cs.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\enjoy.cs\enjoy.cs\obj\x86\Debug\enjoy.cs.pdb
