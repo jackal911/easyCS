@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step3\Step3\bin\Debug\Step3.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step3\Step3\bin\Debug\Step3.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step3\Step3\obj\x86\Debug\Step3.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step3\Step3\obj\x86\Debug\Step3.pdb
