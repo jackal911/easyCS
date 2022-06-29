@@ -70,7 +70,94 @@ namespace Step3
                 sb.AppendLine(i.ToString());
             }
             Console.Write(sb);
+            
+            // Q11021 - A+B - 7
+            int? T = int.Parse(Console.ReadLine());
+            for (var i = 1; i <= T; i++)
+            {
+                string inp = Console.ReadLine();
+                Console.WriteLine("Case #{0}: {1}", i, inp[0] + inp[2] - 96);
+            }
+            // Q11022 - A+B - 8
+            int? T = int.Parse(Console.ReadLine());
+            for (var i = 1; i <= T; i++)
+            {
+                string inp = Console.ReadLine();
+                Console.WriteLine("Case #{0}: {1} + {2} = {3}", i, inp[0]-48, inp[2]-48, inp[0] + inp[2] - 96);
+            }
+            
+            // Q2438 - 별 찍기 - 1
+            int T = int.Parse(Console.ReadLine());
+            string stars = "";
+            for (var i = 0; i < T; i++)
+            {
+                stars += "*";
+                Console.WriteLine(stars);
+            }
+            
+            // Q2439 - 별 찍기 - 2
+            int T = int.Parse(Console.ReadLine());
+            string stars = "";
+            for (var i = 0; i < T; i++)
+            {
+                stars += "*";
+                Console.WriteLine("{0, "+T+"}", stars);
+                //Console.WriteLine(stars.PadLeft(T));
+            }
+            
+            // Q10871 - X보다 작은 수
+            string[] inp = Console.ReadLine().Split();
+            int N = int.Parse(inp[0]);
+            int X = int.Parse(inp[1]);
+            string[] nums = Console.ReadLine().Split();
+            foreach (var num in nums)
+            {
+                int n = int.Parse(num);
+                if (n < X)
+                {
+                    Console.Write(n + " ");
+                }
+            }
+            
+            // Q10952 - A+B - 5
+            while (true)
+            {
+                string inp = Console.ReadLine();
+                if (inp[0] == '0' && inp[2] == '0')
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine(inp[0] + inp[2] - 96);
+                }
+            }
+            
+            // Q10951 - A+B - 4
+            while (true)
+            {
+                string inp;
+                try
+                {
+                    inp = Console.ReadLine();
+                    Console.WriteLine(inp[0] + inp[2] - 96); 
+                }
+                catch
+                {
+                    break;
+                }                               
+            }
             */
+            // Q1110 - 더하기 사이클
+            int N = int.Parse(Console.ReadLine());
+            int temp = (N % 10 + N / 10)%10 + (N % 10) * 10;
+            int i = 1;
+            while (temp != N)
+            {
+                temp = (temp % 10 + temp / 10)%10 + (temp % 10) * 10;
+                i++;
+            }
+            Console.WriteLine(i);
         }
     }
 }
