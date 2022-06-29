@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step1_Basic\Step1_Basic\bin\Debug\Step1_Basic.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step1_Basic\Step1_Basic\bin\Debug\Step1_Basic.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step1_Basic\Step1_Basic\obj\x86\Debug\Step1_Basic.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step1_Basic\Step1_Basic\obj\x86\Debug\Step1_Basic.pdb

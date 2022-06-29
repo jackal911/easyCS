@@ -61,7 +61,7 @@ namespace Step3
                 sb.AppendLine(i.ToString());
             }
             Console.WriteLine(sb);
-            */
+            
             // Q2742 - 기찍 N
             StringBuilder sb = new StringBuilder();
             int N = int.Parse(Console.ReadLine());
@@ -70,6 +70,7 @@ namespace Step3
                 sb.AppendLine(i.ToString());
             }
             Console.Write(sb);
+            */
         }
     }
 }
