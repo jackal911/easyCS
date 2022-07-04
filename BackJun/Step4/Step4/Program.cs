@@ -44,7 +44,7 @@ namespace Step4
                 }
             }
             Console.Write("{0}\n{1}", max, maxIndex);
-            */
+            
             // Q2577 - 숫자의 개수
             long mult = 1;
             for (var i = 0; i < 3; i++)
@@ -61,6 +61,15 @@ namespace Step4
             {
                 Console.WriteLine(j);
             }
+            */
+            // Q3052 - 나머지
+            SortedSet<int> set = new SortedSet<int>();
+            for (int i = 0; i < 10; i++)
+            {
+                int remain = int.Parse(Console.ReadLine())%42;
+                set.Add(remain);
+            }
+            Console.WriteLine(set.Count);
         }
     }
 }
