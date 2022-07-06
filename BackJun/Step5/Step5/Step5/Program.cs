@@ -80,8 +80,16 @@ namespace Step5
             */
             // Q1157 - 단어 공부
             List<char> input = Console.ReadLine().ToUpper().ToList();
-            //while(input.Length!=0)
-            input.Count(s => s == input[0]);
+            List<char> chars = new List<char>();
+            List<int> counts = new List<int>();
+            while (input.Count != 0)
+            {
+                chars.Add(input[0]);
+                int n = input.RemoveAll(s => s == input[0]);
+                counts.Add(n);
+            }
+            int max = counts.Max();
+            if()
         }
     }
 }
