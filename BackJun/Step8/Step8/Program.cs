@@ -104,9 +104,30 @@ namespace Step8
             {
                 int n = int.Parse(Console.ReadLine());
                 int L = primes.Count();
-                for (int j = primes[L - 1] + 1; j < n-1; j++)
+                for (int j = primes[L - 1] + 1; j < n - 1; j++)
                 {
-
+                    bool isPrime = true;
+                    for (int k = 0; k < L; k++)
+                    {
+                        if (j % primes[k] == 0)
+                        {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                    if (isPrime)
+                    {
+                        primes.Add(j);
+                        L++;
+                    }                    
+                }
+                for (int l = 0; l < n / 2; l++)
+                {
+                    if (primes.Contains(n / 2 - l) && primes.Contains(n / 2 + l))
+                    {
+                        Console.WriteLine("{0} {1}", n / 2 - l, n / 2 + l);
+                        break;
+                    }
                 }
             }
         }
