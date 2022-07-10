@@ -58,11 +58,11 @@ namespace Step9
             stars[0] = String.Concat(Enumerable.Repeat(stars[0], 3));
             if (n > 3)
             {
-                
+                return "a";
             }
             else
             {
-                return toWrite;
+                return "a";
             }
         }
         static void Main(string[] args)
