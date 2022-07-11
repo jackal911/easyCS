@@ -76,8 +76,16 @@ namespace Step9
             List<string> moves = new List<string>();
             if (n == 1)
             {
+<<<<<<< HEAD
                 moves.Add(String.Format("{0} {1}", start, end));
                 return moves;
+=======
+                return "a";
+            }
+            else
+            {
+                return "a";
+>>>>>>> e0336b0bfcee4b77424527b842872467988badde
             }
             moves.AddRange(move(n - 1, start, 6 - end - start));
             moves.AddRange(move(1, start, end));
