@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step9\Step9\bin\Debug\Step9.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step9\Step9\bin\Debug\Step9.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step9\Step9\obj\x86\Debug\Step9.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step9\Step9\obj\x86\Debug\Step9.pdb
