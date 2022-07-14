@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Step1_Basic
 {
@@ -750,7 +751,35 @@ namespace Step1_Basic
                     }
                 }
             }
-        */
+        
+
+            // 파일 입출력
+            FileStream fsa = File.Create("a.txt");
+            FileInfo file = new FileInfo("b.txt");
+            FileStream fsb = file.Create();
+
+            fsa.Close();
+            fsb.Close();
+            File.Copy("a.txt", "c.txt");
+            FileInfo dst = file.CopyTo("d.txt");
+            */
+            // StreamWriter
+            StreamWriter sw = new StreamWriter("a.txt");
+            sw.Write("sw.Write()");
+            sw.Write(" sw.Write()");
+            sw.WriteLine(" sw.WriteLine()");
+            sw.WriteLine("sw.WriteLine()");
+
+            sw.Close();
+
+            // StreamReader
+            StreamReader sr = new StreamReader("a.txt");
+
+            while (sr.Peek() >= 0)
+            {
+                Console.WriteLine(sr.ReadLine());
+            }
+            sr.Close();
         }
 
         // 4) 배열의 전달
