@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharp200ForBeginner\1-10\1-10\bin\Debug\1-10.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharp200ForBeginner\1-10\1-10\bin\Debug\1-10.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharp200ForBeginner\1-10\1-10\obj\x86\Debug\1-10.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharp200ForBeginner\1-10\1-10\obj\x86\Debug\1-10.pdb
