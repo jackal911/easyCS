@@ -8,12 +8,22 @@ namespace receiveReportResult
     {
         public int[] solution(string[] id_list, string[] report, int k)
         {
-            var tReport1 = report.Distinct();
-            var tReport2 = tReport1.Select(s => s.Split(' '));
-            var tReport3 = tReport2.GroupBy(g => g[1]);
-            var tReport4 = tReport3.Where(w => w.Count() >= k);
-            var tReport5 = tReport4.SelectMany(sm => sm.Select(s => s[0]));
-            var tReport6 = tReport5.ToList();
+            var tReport1 = report.Distinct().
+                Select(s => s.Split(' ')).
+                GroupBy(g => g[1]).
+                Where(w => w.Count() >= k);
+            foreach (var str in tReport1)
+            {
+                foreach (var s in str)
+                {
+                    foreach (var _ in s)
+                    {
+                        Console.Write(_ + "\n");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine("-------------");
+            }
 
             var tReport = report.Distinct().
                 Select(s => s.Split(' ')).
@@ -57,9 +67,9 @@ namespace receiveReportResult
         static void Main(string[] args)
         {
             Solution s = new Solution();
-            string[] id_list = { "con", "ryan" };
-            string[] report = { "ryan con", "ryan con", "ryan con", "ryan con" };
-            int k = 3;
+            string[] id_list = { "muzi", "frodo", "apeach", "neo" };
+            string[] report = { "muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi" };
+            int k = 2;
             Array.ForEach(s.solution(id_list, report, k), x => Console.WriteLine(x));
         }
     }
