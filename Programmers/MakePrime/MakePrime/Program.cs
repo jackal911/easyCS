@@ -67,6 +67,7 @@ namespace MakePrime
             }
             Dictionary<string, string> dict = new Dictionary<string, string>(){{"a", "b"}};
             Console.WriteLine(dict["a"]);
+            Console.WriteLine();
         }
     }
 }
