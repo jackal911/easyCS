@@ -37,8 +37,8 @@ namespace GymSuit
         {
             Solution s = new Solution();
             int n = 5;
-            int[] lost = { 1,2,3, 4};
-            int[] reserve = { 1,2,3, 5 };
+            int[] lost = { 1, 2, 3, 4 };
+            int[] reserve = { 1, 2, 3, 5 };
             Console.WriteLine(s.solution(n, lost, reserve));
         }
     }
