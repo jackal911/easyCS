@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\reverseTernary\reverseTernary\bin\Debug\reverseTernary.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\reverseTernary\reverseTernary\bin\Debug\reverseTernary.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\reverseTernary\reverseTernary\obj\x86\Debug\reverseTernary.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\reverseTernary\reverseTernary\obj\x86\Debug\reverseTernary.pdb

@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\ExpressByN\ExpressByN\bin\Debug\ExpressByN.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\ExpressByN\ExpressByN\bin\Debug\ExpressByN.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\ExpressByN\ExpressByN\obj\x86\Debug\ExpressByN.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\ExpressByN\ExpressByN\obj\x86\Debug\ExpressByN.pdb

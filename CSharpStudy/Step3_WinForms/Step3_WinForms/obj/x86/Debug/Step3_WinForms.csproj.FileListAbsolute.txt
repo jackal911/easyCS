@@ -1,0 +1,15 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\bin\Debug\Step3_WinForms.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\bin\Debug\Step3_WinForms.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.Properties.Resources.resources
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.csproj.GenerateResource.Cache
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.Form1.resources
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\bin\Debug\Step3_WinForms.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\bin\Debug\Step3_WinForms.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.Form1.resources
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.Properties.Resources.resources
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.csproj.GenerateResource.Cache
+C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step3_WinForms\Step3_WinForms\obj\x86\Debug\Step3_WinForms.csprojResolveAssemblyReference.cache

@@ -1,0 +1,5 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\GymSuit\GymSuit\bin\Debug\GymSuit.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\GymSuit\GymSuit\bin\Debug\GymSuit.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\GymSuit\GymSuit\obj\x86\Debug\GymSuit.csprojResolveAssemblyReference.cache
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\GymSuit\GymSuit\obj\x86\Debug\GymSuit.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\GymSuit\GymSuit\obj\x86\Debug\GymSuit.pdb

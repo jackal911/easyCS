@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CountDivisorAndSum\CountDivisorAndSum\bin\Debug\CountDivisorAndSum.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CountDivisorAndSum\CountDivisorAndSum\bin\Debug\CountDivisorAndSum.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CountDivisorAndSum\CountDivisorAndSum\obj\x86\Debug\CountDivisorAndSum.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CountDivisorAndSum\CountDivisorAndSum\obj\x86\Debug\CountDivisorAndSum.pdb

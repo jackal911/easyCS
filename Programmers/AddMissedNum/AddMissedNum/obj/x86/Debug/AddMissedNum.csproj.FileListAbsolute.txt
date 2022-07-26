@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddMissedNum\AddMissedNum\bin\Debug\AddMissedNum.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddMissedNum\AddMissedNum\bin\Debug\AddMissedNum.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddMissedNum\AddMissedNum\obj\x86\Debug\AddMissedNum.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddMissedNum\AddMissedNum\obj\x86\Debug\AddMissedNum.pdb
