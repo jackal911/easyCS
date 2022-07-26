@@ -5,6 +5,7 @@ using System.Text;
 
 namespace CalDotProduct
 {
+    // 내적 https://school.programmers.co.kr/learn/courses/30/lessons/70128
     class Program
     {
         public class Solution
