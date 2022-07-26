@@ -8,7 +8,6 @@ namespace MakePrime
     {
         public int solution(int[] nums)
         {
-            
             int answer = 0;
             return answer;
         }
@@ -23,15 +22,16 @@ namespace MakePrime
         static IEnumerable<IEnumerable<T>> GetKCombs<T>(IEnumerable<T> list, int length) where T : IComparable
         {
             if (length == 1) return list.Select(t => new T[] { t });
-            return GetKCombs(list, length - 1)
+            IEnumerable<IEnumerable<T>> k = GetKCombs(list, length - 1)
                 .SelectMany(t => list.Where(o => o.CompareTo(t.Last()) > 0),
                     (t1, t2) => t1.Concat(new T[] { t2 }));
+            return k;
         }
         static void Main(string[] args)
         {
             Solution s = new Solution();
-            int[] nums = { 1, 2, 3, 4 };
-            foreach (var v in GetKCombs<int>(nums, 2))
+            int[] nums = { 1, 2, 3, 4, 5, 6 };
+            foreach (var v in GetKCombs<int>(nums, 3))
             {
                 v.ToList().ForEach(x => Console.Write(x + " "));
                 Console.WriteLine();
@@ -65,7 +65,7 @@ namespace MakePrime
             {
                 Console.WriteLine(obj); // anonymous type은 조회도 깔끔하게 잘된다.
             }
-            Dictionary<string, string> dict = new Dictionary<string, string>(){{"a", "b"}};
+            Dictionary<string, string> dict = new Dictionary<string, string>() { { "a", "b" } };
             Console.WriteLine(dict["a"]);
             Console.WriteLine();
         }

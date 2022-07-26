@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C529370F-0C92-4A83-8523-9D824FDFEC9B}</ProjectGuid>
+    <ProjectGuid>{6A0FDE70-4016-489E-8F9B-47818166498F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MakePrime</RootNamespace>

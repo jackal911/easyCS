@@ -1,0 +1,4 @@
+C:\easyCS\Programmers\MakePrime\MakePrime\bin\Debug\MakePrime.exe
+C:\easyCS\Programmers\MakePrime\MakePrime\bin\Debug\MakePrime.pdb
+C:\easyCS\Programmers\MakePrime\MakePrime\obj\x86\Debug\MakePrime.exe
+C:\easyCS\Programmers\MakePrime\MakePrime\obj\x86\Debug\MakePrime.pdb
