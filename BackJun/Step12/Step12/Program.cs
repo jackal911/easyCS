@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 // Step12 - 집합과 맵 https://www.acmicpc.net/step/49
 
@@ -66,19 +68,19 @@ namespace Step12
             StreamReader sr = new StreamReader(Console.OpenStandardInput());
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             int[] NM = Array.ConvertAll(sr.ReadLine().Split(), Int32.Parse);
-            string[] strSet = new string[NM[0]];
+            List<string> strSet = new List<string>();
             int count = 0;
             for (int i = 0; i < NM[0]; i++)
             {
-                strSet[i] = sr.ReadLine();
+                strSet.Add(sr.ReadLine());
             }
             for (int j = 0; j < NM[1]; j++)
             {
-                string inp = sr.ReadLine();
-                if (Array.Exists(strSet, s => s == inp))
+                if (strSet.Contains(sr.ReadLine()))
                     count++;
             }
-            sw.Write(count);
+            sr.Close();
+            sw.WriteLine(count);
             sw.Close();
         }
     }
