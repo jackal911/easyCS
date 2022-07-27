@@ -30,7 +30,6 @@ namespace reverseTernary
             Solution s = new Solution();
             int n = 125;
             Console.WriteLine(s.solution(n));
-            Console.WriteLine(int.MinValue);
         }
     }
 }
