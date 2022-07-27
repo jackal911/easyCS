@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 // Step12 - 집합과 맵 https://www.acmicpc.net/step/49
@@ -24,7 +26,7 @@ namespace Step12
                 else
                     right = mid;
             }
-            return where[right]==toFind ? 1 : 0;
+            return where[right] == toFind ? 1 : 0;
         }
         static void Main(string[] args)
         {
@@ -60,26 +62,29 @@ namespace Step12
                 sw.Write("{0} ", yesOrNo[num + 10000000] ? 1 : 0);
             }
             sw.Close();
-            */
+            
             // Q14425 - 문자열 집합
-            // 푼 사람이 없다. - 실패(22.7.13)
+            // 푼 사람이 없다. - 시간 초과 실패(22.7.13)
+            // dictionary 쓰니까 그냥 깸/
             StreamReader sr = new StreamReader(Console.OpenStandardInput());
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             int[] NM = Array.ConvertAll(sr.ReadLine().Split(), Int32.Parse);
-            string[] strSet = new string[NM[0]];
+            Dictionary<string, bool> strSet = new Dictionary<string, bool>();
             int count = 0;
             for (int i = 0; i < NM[0]; i++)
             {
-                strSet[i] = sr.ReadLine();
+                strSet[sr.ReadLine()] = true;
             }
             for (int j = 0; j < NM[1]; j++)
             {
-                string inp = sr.ReadLine();
-                if (Array.Exists(strSet, s => s == inp))
+                if (strSet.ContainsKey(sr.ReadLine()))
                     count++;
             }
-            sw.Write(count);
+            sw.WriteLine(count);
             sw.Close();
+            */
+            // Q1620 - 나는야 포켓몬 마스터 이다솜
+
         }
     }
 }
