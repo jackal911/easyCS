@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 어셈블리의 일반 정보는 다음 특성 집합을 통해 제어됩니다.
 // 어셈블리와 관련된 정보를 수정하려면
 // 이 특성 값을 변경하십시오.
-[assembly: AssemblyTitle("ExpressByN")]
+[assembly: AssemblyTitle("Step1_Basic")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ExpressByN")]
+[assembly: AssemblyProduct("Step1_Basic")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,11 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 이 프로젝트가 COM에 노출되는 경우 다음 GUID는 typelib의 ID를 나타냅니다.
-<<<<<<< HEAD
-[assembly: Guid("0d26019c-5cf2-44bf-a179-6514a4f8a9d1")]
-=======
-[assembly: Guid("63a3466d-f18a-4392-a898-553430d90137")]
->>>>>>> origin/main
+[assembly: Guid("bba8da41-a4e6-4fc9-948d-51ef017d7877")]
 
 // 어셈블리의 버전 정보는 다음 네 가지 값으로 구성됩니다.
 //
