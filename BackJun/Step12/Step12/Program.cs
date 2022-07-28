@@ -173,8 +173,8 @@ namespace Step12
             sw.WriteLine(dbjob.Count());
             dbjob.Select(s => s.Key).OrderBy(s=>s).ToList().ForEach(s => sw.WriteLine(s));
             sw.Close();
-            */
-            // Q1267 - 대칭 차집합
+            
+            // Q1267 - 대칭 차집합 https://www.acmicpc.net/problem/1269
             StreamReader sr = new StreamReader(Console.OpenStandardInput());
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             sr.ReadLine();
@@ -184,9 +184,18 @@ namespace Step12
             allNums.SymmetricExceptWith(commonNums);
             sw.WriteLine(allNums.Count);
             sw.Close();
-
-            // Q11478 - 서로 다른 부분 문자열의 개수
-
+            */
+            // Q11478 - 서로 다른 부분 문자열의 개수 https://www.acmicpc.net/problem/11478
+            string inp = Console.ReadLine();
+            HashSet<string> strs = new HashSet<string>();
+            for (int i = 1; i <= inp.Length; i++)
+            {
+                for (int j = 0; j <= inp.Length - i;j++ )
+                {
+                    strs.Add(inp.Substring(j, i));
+                }
+            }
+            Console.WriteLine(strs.Count);
         }
     }
 }
