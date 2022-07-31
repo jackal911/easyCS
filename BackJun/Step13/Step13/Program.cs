@@ -52,9 +52,78 @@ namespace Step13
                     Console.WriteLine("wrong");
                 }
             }
-            */
+            
             // Q2477 - 참외밭
+            int k = int.Parse(Console.ReadLine());
+            int ewMax = 0;
+            int snMax = 0;
+            int smallSquare = 0;
+            int[] pattern = { 4, 2, 3, 1, 4 }; // 첫원소와 끝원소를 잇기위해
+            int[][] allSave = new int[7][];
+            for (int i = 0; i < 6; i++)
+            {
+                int[] inp = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+                allSave[i] = new int[2]{inp[0], inp[1]};
+                if (i == 0)
+                {
+                    allSave[6] = allSave[0]; // 첫원소와 끝원소를 잇기위해
+                }
 
+                if (inp[0] == 1 || inp[0] == 2)
+                {
+                    ewMax = Math.Max(inp[1], ewMax);
+                }
+                else
+                {
+                    snMax = Math.Max(inp[1], snMax);
+                }
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                int curSide = Array.IndexOf(pattern, allSave[i][0]);
+                int shouldNextSide = pattern[curSide+1];
+                if (shouldNextSide != allSave[i+1][0])
+                {
+                    smallSquare = allSave[i][1] * allSave[i+1][1] * k;
+                }
+            }
+            Console.WriteLine(ewMax * snMax * k - smallSquare);
+            
+            int R = int.Parse(Console.ReadLine());
+            Console.WriteLine("{0:F6}", R * R * Math.PI);
+            Console.WriteLine("{0:F6}", 4 * R * R / 2);
+            */
+            // Q1002 - 터렛
+            int T = int.Parse(Console.ReadLine());
+            for (int i = 0; i < T; i++)
+            {
+                double[] inp = Array.ConvertAll(Console.ReadLine().Split(), double.Parse);
+                double distance = Math.Sqrt(Math.Pow(inp[0] - inp[3], 2) + Math.Pow(inp[1] - inp[4], 2));
+                if(inp[0] == inp[3] && inp[1] == inp[4])
+                {
+                    if(inp[2]==inp[5])
+                    {
+                        Console.WriteLine(-1);
+                    }
+                    else
+                    {
+                        Console.WriteLine(0);
+                    }
+                }
+                else if (distance < inp[2] + inp[5])
+                {
+                    Console.WriteLine(2);
+                }
+                else if (distance == inp[2] + inp[5] || distance == Math.Abs(inp[2] - inp[5]))
+                {
+                    Console.WriteLine(1);
+                }
+                else
+                {
+                    Console.WriteLine(0);
+                }
+            }
         }
     }
 }
