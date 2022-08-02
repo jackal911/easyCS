@@ -9,7 +9,7 @@ namespace Step13
     {
         static void Main(string[] args)
         {
-/*
+			/*
             // Q1085 - 직사각형에서 탈출
             List<int> xywh = Console.ReadLine().Split().ToList().ConvertAll(s => int.Parse(s));
             Console.WriteLine(Math.Min(Math.Min(xywh[0], xywh[2] - xywh[0]), Math.Min(xywh[1], xywh[3] - xywh[1])));
@@ -99,29 +99,52 @@ namespace Step13
             for (int i = 0; i < T; i++)
             {
                 double[] inp = Array.ConvertAll(Console.ReadLine().Split(), double.Parse);
-                double distance = Math.Sqrt(Math.Pow(inp[0] - inp[3], 2) + Math.Pow(inp[1] - inp[4], 2));
-                if(inp[0] == inp[3] && inp[1] == inp[4])
+                double[] bigCircle = new double[3];
+                double[] smallCircle = new double[3];
+                if (inp[2] >= inp[5])
                 {
-                    if(inp[2]==inp[5])
-                    {
-                        Console.WriteLine(-1);
-                    }
-                    else
-                    {
-                        Console.WriteLine(0);
-                    }
-                }
-                else if (distance < inp[2] + inp[5])
-                {
-                    Console.WriteLine(2);
-                }
-                else if (distance == inp[2] + inp[5] || distance == Math.Abs(inp[2] - inp[5]))
-                {
-                    Console.WriteLine(1);
+                    Array.Copy(inp, bigCircle, 3);
+                    Array.Copy(inp, 3, smallCircle, 0, 3);
                 }
                 else
                 {
-                    Console.WriteLine(0);
+                    Array.Copy(inp, smallCircle, 3);
+                    Array.Copy(inp, 3, bigCircle, 0, 3);
+                }
+                double distance = Math.Sqrt(Math.Pow(inp[0] - inp[3], 2) + Math.Pow(inp[1] - inp[4], 2));
+                if (distance < bigCircle[2])
+                {
+                    if (Array.Equals(bigCircle, smallCircle))
+                    {
+                        Console.WriteLine(-1);
+                    }
+                    else if (distance < bigCircle[2] - smallCircle[2])
+                    {
+                        Console.WriteLine(0);
+                    }
+                    else if (distance == bigCircle[2] - smallCircle[2])
+                    {
+                        Console.WriteLine(1);
+                    }
+                    else
+                    {
+                        Console.WriteLine(2);
+                    }
+                }
+                else
+                {
+                    if (distance > bigCircle[2] + smallCircle[2])
+                    {
+                        Console.WriteLine(0);
+                    }
+                    else if (distance == bigCircle[2] + smallCircle[2])
+                    {
+                        Console.WriteLine(1);
+                    }
+                    else
+                    {
+                        Console.WriteLine(2);
+                    }
                 }
             }
         }
