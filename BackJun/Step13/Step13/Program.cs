@@ -114,7 +114,7 @@ namespace Step13
                 double distance = Math.Sqrt(Math.Pow(inp[0] - inp[3], 2) + Math.Pow(inp[1] - inp[4], 2));
                 if (distance < bigCircle[2])
                 {
-                    if (Array.Equals(bigCircle, smallCircle))
+                    if (bigCircle.SequenceEqual(smallCircle))
                     {
                         Console.WriteLine(-1);
                     }
