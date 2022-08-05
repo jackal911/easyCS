@@ -34,7 +34,7 @@ namespace Step14
             Console.ReadLine();
             int[] factors = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             Console.WriteLine(factors.Max() * factors.Min());
-            */
+            
             // Q2609 - 최대공약수와 최소공배수
             int[] twoNumbers = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             int factor = 2;
@@ -80,9 +80,24 @@ namespace Step14
                     Console.WriteLine(twoNumber[1]);
                 }
             }
-            
+            */
             // Q2981 - 검문
-
+            List<int> nums = new List<int>();
+            for (int N = int.Parse(Console.ReadLine()); N > 0; N--)
+            {
+                nums.Add(int.Parse(Console.ReadLine()));
+            }
+            nums.Sort();
+            int min = 1000000000;
+            for (int i = 0; i < nums.Count - 1; i++)
+            {
+                min = Math.Min(min, nums[i + 1] - nums[i]);
+                if (min == 2)
+                {
+                    Console.WriteLine(2);
+                    return;
+                }
+            }
         }
     }
 }
