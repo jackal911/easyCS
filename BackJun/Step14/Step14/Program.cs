@@ -34,6 +34,32 @@ namespace Step14
             Console.ReadLine();
             int[] factors = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             Console.WriteLine(factors.Max() * factors.Min());
+            */
+            // Q2609 - 최대공약수와 최소공배수
+            int[] twoNumbers = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            int factor = 2;
+            int GCD = 1;
+            bool GoOn = true;
+            while (GoOn)
+            {
+                if (twoNumbers[0] % factor == 0 && twoNumbers[1] % factor == 0)
+                {
+                    GCD *= factor;
+                    twoNumbers[0] /= factor;
+                    twoNumbers[1] /= factor;
+                }
+                else
+                {
+                    factor++;
+                }
+
+                if (factor > twoNumbers.Min())
+                {
+                    GoOn = false;
+                }
+            }
+            Console.WriteLine(GCD);
+            Console.WriteLine(GCD * twoNumbers[0] * twoNumbers[1]);
             
             // Q1934 - 최소공배수
             for (int T = int.Parse(Console.ReadLine()); T > 0; T--)
@@ -54,7 +80,7 @@ namespace Step14
                     Console.WriteLine(twoNumber[1]);
                 }
             }
-            */
+            
             // Q2981 - 검문
 
         }
