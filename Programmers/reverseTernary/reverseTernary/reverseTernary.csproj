@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F4F64A18-6A49-40BC-9858-0472AFBEBA1A}</ProjectGuid>
+    <ProjectGuid>{5135AC20-4E96-4DCD-B071-A0BE9D99F665}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Step12</RootNamespace>
-    <AssemblyName>Step12</AssemblyName>
+    <RootNamespace>reverseTernary</RootNamespace>
+    <AssemblyName>reverseTernary</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
