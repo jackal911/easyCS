@@ -1,5 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step8\Step8\bin\Debug\Step8.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step8\Step8\bin\Debug\Step8.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step8\Step8\obj\x86\Debug\Step8.csprojResolveAssemblyReference.cache
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step8\Step8\obj\x86\Debug\Step8.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step8\Step8\obj\x86\Debug\Step8.pdb

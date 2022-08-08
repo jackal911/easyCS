@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\LottoHighLow\LottoHighLow\bin\Debug\LottoHighLow.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\LottoHighLow\LottoHighLow\bin\Debug\LottoHighLow.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\LottoHighLow\LottoHighLow\obj\x86\Debug\LottoHighLow.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\LottoHighLow\LottoHighLow\obj\x86\Debug\LottoHighLow.pdb

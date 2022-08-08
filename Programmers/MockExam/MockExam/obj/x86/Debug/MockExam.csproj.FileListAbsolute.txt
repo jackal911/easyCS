@@ -1,5 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\MockExam\MockExam\bin\Debug\MockExam.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\MockExam\MockExam\bin\Debug\MockExam.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\MockExam\MockExam\obj\x86\Debug\MockExam.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\MockExam\MockExam\obj\x86\Debug\MockExam.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\MockExam\MockExam\obj\x86\Debug\MockExam.csprojResolveAssemblyReference.cache

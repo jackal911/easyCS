@@ -170,24 +170,6 @@ namespace Step14
                     }
                 }
             }
-
-            int realMin = Math.Min(min, nums.Min());
-            
-
-            List<int> result = new List<int>();            
-            for (int i = 2; i <= realMin; i++)
-            {
-                if (result.Contains(i))
-                {
-                    break;
-                }
-
-                if (realMin % i == 0)
-                {
-                    result.Add(i);
-                }
-            }
-            Console.WriteLine(String.Join(" ", result));
         }
     }
 }

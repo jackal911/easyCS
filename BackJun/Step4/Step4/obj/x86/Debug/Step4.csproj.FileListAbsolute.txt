@@ -1,5 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step4\Step4\bin\Debug\Step4.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step4\Step4\bin\Debug\Step4.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step4\Step4\obj\x86\Debug\Step4.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step4\Step4\obj\x86\Debug\Step4.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step4\Step4\obj\x86\Debug\Step4.csprojResolveAssemblyReference.cache

@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CalDotProduct\CalDotProduct\bin\Debug\CalDotProduct.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CalDotProduct\CalDotProduct\bin\Debug\CalDotProduct.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CalDotProduct\CalDotProduct\obj\x86\Debug\CalDotProduct.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\CalDotProduct\CalDotProduct\obj\x86\Debug\CalDotProduct.pdb

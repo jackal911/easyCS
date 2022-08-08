@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddPlusMinus\AddPlusMinus\bin\Debug\AddPlusMinus.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddPlusMinus\AddPlusMinus\bin\Debug\AddPlusMinus.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddPlusMinus\AddPlusMinus\obj\x86\Debug\AddPlusMinus.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\AddPlusMinus\AddPlusMinus\obj\x86\Debug\AddPlusMinus.pdb

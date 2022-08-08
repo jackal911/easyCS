@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\KthNumber\KthNumber\bin\Debug\KthNumber.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\KthNumber\KthNumber\bin\Debug\KthNumber.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\KthNumber\KthNumber\obj\x86\Debug\KthNumber.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\KthNumber\KthNumber\obj\x86\Debug\KthNumber.pdb

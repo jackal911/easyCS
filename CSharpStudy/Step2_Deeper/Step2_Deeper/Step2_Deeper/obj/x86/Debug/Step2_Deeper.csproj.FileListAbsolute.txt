@@ -1,4 +1,0 @@
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step2_Deeper\Step2_Deeper\Step2_Deeper\bin\Debug\Step2_Deeper.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step2_Deeper\Step2_Deeper\Step2_Deeper\bin\Debug\Step2_Deeper.pdb
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step2_Deeper\Step2_Deeper\Step2_Deeper\obj\x86\Debug\Step2_Deeper.exe
-C:\Users\sgkim\Desktop\이준호\easyCS\CSharpStudy\Step2_Deeper\Step2_Deeper\Step2_Deeper\obj\x86\Debug\Step2_Deeper.pdb
