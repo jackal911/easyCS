@@ -80,7 +80,7 @@ namespace Step14
                     Console.WriteLine(twoNumber[1]);
                 }
             }
-            */
+            
             // Q2981 - 검문
             List<int> nums = new List<int>();
             for (int N = int.Parse(Console.ReadLine()); N > 0; N--)
@@ -88,14 +88,86 @@ namespace Step14
                 nums.Add(int.Parse(Console.ReadLine()));
             }
             nums.Sort();
-            int min = 1000000000;
-            for (int i = 0; i < nums.Count - 1; i++)
+            nums.Reverse();
+            int gcd = nums[0] - nums[1];
+            if(nums.Count > 2)
             {
-                min = Math.Min(min, nums[i + 1] - nums[i]);
-                if (min == 2)
+                gcd = getGcd(gcd, nums[1] - nums[2]);
+                for (int i = 2; i < nums.Count - 1; i++)
                 {
-                    Console.WriteLine(2);
-                    return;
+                    gcd = getGcd(gcd, nums[i] - nums[i + 1]);
+                }                
+            }
+
+            List<int> result = getFactors(gcd).Where(s => s != 1).ToList();
+            result.Sort();
+            result.ForEach(s => Console.Write(s + " "));
+
+               // 시간초과
+//             for (int i = 2; i <= nums[1]; i++)
+//             {
+//                 int remainder = nums[0] % i;
+//                 bool isok = nums.All(s => s % i == remainder);
+//                 if (isok)
+//                 {
+//                     result.Add(i);
+//                 }
+//             }
+//             Console.WriteLine(String.Join(" ", result));
+            
+            // Q3036 - 링
+            Console.ReadLine();
+            int[] rings = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            for (int i = 1; i < rings.Length; i++)
+            {
+                int g = getGcd(rings[0], rings[i]);
+                Console.WriteLine("{0}/{1}", rings[0] / g, rings[i] / g);
+            }
+            */
+            // Q11050 - 이항 계수 1
+            int[] twoNum = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            if (twoNum[1] == 0 || twoNum[1] == twoNum[0])
+            {
+                Console.WriteLine(1);
+                return;
+            }
+            int[] lst = { 1, 1 };
+            for (int i = 1; i < twoNum[0]; i++)
+            {
+                List<int> newList = new List<int>();
+                newList.Add(1);
+                for (int j = 0; j < lst.Length - 1; j++)
+                {
+                    newList.Add(lst[j] + lst[j + 1]);
+                }
+                newList.Add(1);
+                lst = new int[newList.Count];
+                newList.CopyTo(lst);
+            }
+            Console.WriteLine(lst[twoNum[1]]);
+        }
+        public static int getGcd(int a, int b)
+        {
+            int r = a % b;
+            if (r == 0)
+            {
+                return b;
+            }
+            return getGcd(b, r);            
+        }
+
+        public static IEnumerable<int> getFactors(int a)
+        {
+            int max = (int)Math.Sqrt(a);
+            for (int i = 1; i <= max; i++)
+            {
+                if (a % i == 0)
+                {
+                    yield return i;
+                    if (i * i != a)
+                    {
+                        yield return a / i;
+                    }
                 }
             }
         }
