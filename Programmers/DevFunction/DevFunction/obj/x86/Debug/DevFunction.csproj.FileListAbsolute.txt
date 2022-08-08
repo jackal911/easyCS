@@ -1,0 +1,5 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\DevFunction\DevFunction\bin\Debug\DevFunction.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\DevFunction\DevFunction\bin\Debug\DevFunction.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\DevFunction\DevFunction\obj\x86\Debug\DevFunction.csprojResolveAssemblyReference.cache
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\DevFunction\DevFunction\obj\x86\Debug\DevFunction.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\DevFunction\DevFunction\obj\x86\Debug\DevFunction.pdb

@@ -66,6 +66,22 @@ namespace Step12
             sw.Close();
             
 <<<<<<< HEAD
+            // Q14425 - 문자열 집합
+            // 푼 사람이 없다. - 시간 초과 실패(22.7.13)
+            // dictionary 쓰니까 그냥 깸/
+            StreamReader sr = new StreamReader(Console.OpenStandardInput());
+            StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+            int[] NM = Array.ConvertAll(sr.ReadLine().Split(), Int32.Parse);
+            Dictionary<string, bool> strSet = new Dictionary<string, bool>();
+            int count = 0;
+            for (int i = 0; i < NM[0]; i++)
+            {
+                strSet[sr.ReadLine()] = true;
+            }
+            for (int j = 0; j < NM[1]; j++)
+            {
+=======
+<<<<<<< HEAD
             // Q14425 - 문자열 집합 https://www.acmicpc.net/problem/14425
             // 푼 사람이 없다. - 실패(22.7.13)
             StreamReader sr = new StreamReader(Console.OpenStandardInput());
@@ -214,6 +230,7 @@ namespace Step12
             }
             for (int j = 0; j < NM[1]; j++)
             {
+>>>>>>> local
                 if (strSet.ContainsKey(sr.ReadLine()))
                     count++;
             }
@@ -222,7 +239,10 @@ namespace Step12
             */
             // Q1620 - 나는야 포켓몬 마스터 이다솜
 
+<<<<<<< HEAD
+=======
 >>>>>>> origin/main
+>>>>>>> local
         }
     }
 }

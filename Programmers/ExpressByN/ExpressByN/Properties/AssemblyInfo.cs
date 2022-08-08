@@ -21,10 +21,14 @@ using System.Runtime.InteropServices;
 
 // 이 프로젝트가 COM에 노출되는 경우 다음 GUID는 typelib의 ID를 나타냅니다.
 <<<<<<< HEAD
+[assembly: Guid("63a3466d-f18a-4392-a898-553430d90137")]
+=======
+<<<<<<< HEAD
 [assembly: Guid("0d26019c-5cf2-44bf-a179-6514a4f8a9d1")]
 =======
 [assembly: Guid("63a3466d-f18a-4392-a898-553430d90137")]
 >>>>>>> origin/main
+>>>>>>> local
 
 // 어셈블리의 버전 정보는 다음 네 가지 값으로 구성됩니다.
 //

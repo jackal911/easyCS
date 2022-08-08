@@ -1,0 +1,5 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\receiveReportResult\receiveReportResult\bin\Debug\receiveReportResult.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\receiveReportResult\receiveReportResult\bin\Debug\receiveReportResult.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\receiveReportResult\receiveReportResult\obj\x86\Debug\receiveReportResult.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\receiveReportResult\receiveReportResult\obj\x86\Debug\receiveReportResult.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\receiveReportResult\receiveReportResult\obj\x86\Debug\receiveReportResult.csprojResolveAssemblyReference.cache

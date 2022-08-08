@@ -1,0 +1,5 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step10\Step10\bin\Debug\Step10.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step10\Step10\bin\Debug\Step10.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step10\Step10\obj\x86\Debug\Step10.csprojResolveAssemblyReference.cache
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step10\Step10\obj\x86\Debug\Step10.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\BackJun\Step10\Step10\obj\x86\Debug\Step10.pdb

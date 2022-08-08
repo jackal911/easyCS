@@ -1,0 +1,4 @@
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\NumStringEnglish\NumStringEnglish\bin\Debug\NumStringEnglish.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\NumStringEnglish\NumStringEnglish\bin\Debug\NumStringEnglish.pdb
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\NumStringEnglish\NumStringEnglish\obj\x86\Debug\NumStringEnglish.exe
+C:\Users\sgkim\Desktop\이준호\easyCS\Programmers\NumStringEnglish\NumStringEnglish\obj\x86\Debug\NumStringEnglish.pdb
