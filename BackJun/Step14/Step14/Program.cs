@@ -123,7 +123,6 @@ namespace Step14
                 int g = getGcd(rings[0], rings[i]);
                 Console.WriteLine("{0}/{1}", rings[0] / g, rings[i] / g);
             }
-            */
             // Q11050 - 이항 계수 1
             int[] twoNum = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             if (twoNum[1] == 0 || twoNum[1] == twoNum[0])
@@ -145,6 +144,80 @@ namespace Step14
                 newList.CopyTo(lst);
             }
             Console.WriteLine(lst[twoNum[1]]);
+            
+            // Q11051 - 이항 계수 2
+            int[] twoNum = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            if (twoNum[1] == 0 || twoNum[1] == twoNum[0])
+            {
+                Console.WriteLine(1);
+                return;
+            }
+            int[] lst = { 1, 1 };
+            for (int i = 1; i < twoNum[0]; i++)
+            {
+                List<int> newList = new List<int>();
+                newList.Add(1);
+                for (int j = 0; j < lst.Length - 1; j++)
+                {
+                    newList.Add((lst[j] + lst[j + 1]) % 10007);
+                }
+                newList.Add(1);
+                lst = new int[newList.Count];
+                newList.CopyTo(lst);
+            }
+            Console.WriteLine(lst[twoNum[1]]);
+            
+            // Q1010 - 다리 놓기
+            long T = long.Parse(Console.ReadLine());
+            for (long i = 0; i < T; i++)
+            {
+                long[] inp = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+                Console.WriteLine(combination(inp[1], inp[0]));
+            }
+            
+            // Q9375 - 패션왕 신해빈
+            int T = int.Parse(Console.ReadLine());
+            for (int i = 0; i < T; i++)
+            {
+                int n = int.Parse(Console.ReadLine());
+                Dictionary<string, List<string>> clothes = new Dictionary<string, List<string>>();
+                for (int j = 0; j < n; j++)
+                {
+                    string[] cloth = Console.ReadLine().Split();
+                    if (clothes.ContainsKey(cloth[1]) == false)
+                    {
+                        clothes[cloth[1]] = new List<string>();
+                    }
+                    clothes[cloth[1]].Add(cloth[0]);
+                }
+                int result = 1;
+                foreach (var category in clothes)
+                {
+                    result *= category.Value.Count + 1;
+                }
+                Console.WriteLine(result - 1);
+            }
+            */
+            // Q1676 - 팩토리얼 0의 개수
+            Console.WriteLine(factorial(15));
+            int N = int.Parse(Console.ReadLine());
+            int countZero = 0;
+            int facto = 1;
+            for (int i = N; i > 0; i--)
+            {
+                facto *= i;
+                int digit = facto.ToString().Length;
+                for (int j = digit; j > 0; j--)
+                {
+                    if (facto % (int)Math.Pow(10, j) == 0)
+                    {
+                        facto /= (int)Math.Pow(10, j);
+                        countZero += j;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine(countZero);
         }
         public static int getGcd(int a, int b)
         {
@@ -171,5 +244,32 @@ namespace Step14
                 }
             }
         }
+
+        // 조합
+        public static long combination(long m, long n)
+        {            
+            if (m < n)
+            {
+                return 0;
+            }
+            long com = 1;
+            for (long i = 0; i < n; i++)
+            {
+                com *= m--;
+                com /= i + 1;
+            }
+            return com;
+        }
+
+        // 팩토리얼
+        public static long factorial(long m)
+        {
+            if (m <= 1)
+            {
+                return 1;
+            }
+            return m * factorial(m - 1);
+        }
+
     }
 }
