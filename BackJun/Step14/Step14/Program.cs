@@ -197,25 +197,43 @@ namespace Step14
                 }
                 Console.WriteLine(result - 1);
             }
-            */
+            
             // Q1676 - 팩토리얼 0의 개수
-            Console.WriteLine(factorial(15));
             int N = int.Parse(Console.ReadLine());
             int countZero = 0;
             int facto = 1;
-            for (int i = N; i > 0; i--)
+            for (int i = 2; i <= N; i++)
             {
                 facto *= i;
-                int digit = facto.ToString().Length;
-                for (int j = digit; j > 0; j--)
+                while (facto % 10 == 0)
                 {
-                    if (facto % (int)Math.Pow(10, j) == 0)
-                    {
-                        facto /= (int)Math.Pow(10, j);
-                        countZero += j;
-                        break;
-                    }
+                    countZero++;
+                    facto /= 10;
                 }
+                facto %= 1000000;
+            }
+            Console.WriteLine(countZero);
+            */
+            // Q2004 - 조합 0의 개수
+            long[] twoNum = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+            if(twoNum[1]>twoNum[0]-twoNum[1])
+            {
+                twoNum[1] = twoNum[0] - twoNum[1];
+            }
+            Console.WriteLine(combination(twoNum[0], twoNum[1]));
+            long countZero = 0;
+            int pow = 1;            
+            long startN = twoNum[0];
+            long endN = twoNum[0] - twoNum[1] + 1;
+            long startM = twoNum[1];
+            long fiveMul;
+            while (startN >= (fiveMul = (long)Math.Pow(5, pow++)))
+            {
+                long startNToFiveMul = startN - startN % fiveMul;
+                long endNToFiveMul = endN + (fiveMul - endN % fiveMul);
+                long startMToFiveMul = startM - startM % fiveMul;
+                countZero += (startNToFiveMul-endNToFiveMul) / fiveMul + 1;
+                countZero -= startMToFiveMul / fiveMul;
             }
             Console.WriteLine(countZero);
         }
@@ -226,7 +244,7 @@ namespace Step14
             {
                 return b;
             }
-            return getGcd(b, r);            
+            return getGcd(b, r);
         }
 
         public static IEnumerable<int> getFactors(int a)
