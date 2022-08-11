@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Step14
 {
@@ -216,26 +215,46 @@ namespace Step14
             */
             // Q2004 - 조합 0의 개수
             long[] twoNum = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
-            if(twoNum[1]>twoNum[0]-twoNum[1])
+            if (twoNum[1] > twoNum[0] - twoNum[1])
             {
                 twoNum[1] = twoNum[0] - twoNum[1];
             }
-            Console.WriteLine(combination(twoNum[0], twoNum[1]));
-            long countZero = 0;
+            // Console.WriteLine(combination(twoNum[0], twoNum[1]));
+            long countFive = 0;
             int pow = 1;            
             long startN = twoNum[0];
             long endN = twoNum[0] - twoNum[1] + 1;
             long startM = twoNum[1];
             long fiveMul;
+            long twoMul;
             while (startN >= (fiveMul = (long)Math.Pow(5, pow++)))
             {
                 long startNToFiveMul = startN - startN % fiveMul;
-                long endNToFiveMul = endN + (fiveMul - endN % fiveMul);
+                long endNToFiveMul = endN % fiveMul == 0 ? endN : endN + (fiveMul - endN % fiveMul);
                 long startMToFiveMul = startM - startM % fiveMul;
-                countZero += (startNToFiveMul-endNToFiveMul) / fiveMul + 1;
-                countZero -= startMToFiveMul / fiveMul;
+                if (startNToFiveMul < endN || endNToFiveMul > startN)
+                {
+                    continue;
+                }
+                countFive += (startNToFiveMul-endNToFiveMul) / fiveMul + 1;
+                countFive -= startMToFiveMul / fiveMul;
             }
-            Console.WriteLine(countZero);
+
+            pow = 1;
+            long countTwo = 0;
+            while (startN >= (twoMul = (long)Math.Pow(2, pow++)))
+            {
+                long startNToTwoMul = startN - startN % twoMul;
+                long endNToTwoMul = endN % twoMul == 0 ? endN : endN + (twoMul - endN % twoMul);
+                long startMToTwoMul = startM - startM % twoMul;
+                if (startNToTwoMul < endN || endNToTwoMul > startN)
+                {
+                    continue;
+                }
+                countTwo += (startNToTwoMul - endNToTwoMul) / twoMul + 1;
+                countTwo -= startMToTwoMul / twoMul;
+            }
+            Console.WriteLine(Math.Min(countFive, countTwo));
         }
         public static int getGcd(int a, int b)
         {
