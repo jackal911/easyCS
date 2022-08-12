@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 // Step1 - 입출력과 사칙연산 https://www.acmicpc.net/step/1
 
@@ -83,8 +84,12 @@ namespace Step1
             // Q18108 - 1998년생인 내가 태국에서는 2541년생?!
             int y = int.Parse(Console.ReadLine());
             Console.Write(y - 543);
-            
-
+            */
+            // Q3003 - 킹, 퀸, 룩, 비숍, 나이트, 폰
+            int[] original = { 1, 1, 2, 2, 2, 8 };
+            int[] current = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Console.WriteLine(String.Join(" ", current.Select((v, i) => original[i] - v)));
+            /*
             // Q10430 - 나머지
             string[] inp = Console.ReadLine().Split();
             int A = int.Parse(inp[0]);
