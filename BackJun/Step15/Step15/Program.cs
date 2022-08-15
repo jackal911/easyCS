@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Step15
 {
@@ -8,12 +9,12 @@ namespace Step15
     class Program
     {
         // Q15649 - N과 M (1)
-        static void printPermutation(int M, List<int> lst, List<bool> visit, List<int> result)
+        static void printPermutation(int M, List<int> lst, List<bool> visit, List<int> result, StreamWriter sw)
         {            
             if (M == result.Count)
             {
-                result.ForEach(s => Console.Write(s + " "));
-                Console.WriteLine();
+                result.ForEach(s => sw.Write(s + " "));
+                sw.WriteLine();
             }
             else
             {
@@ -23,7 +24,7 @@ namespace Step15
                     {
                         result.Add(lst[i]);
                         visit[i] = true;
-                        printPermutation(M, lst, visit, result);
+                        printPermutation(M, lst, visit, result, sw);
                         visit[i] = false;
                         result.Remove(lst[i]);
                     }
@@ -36,7 +37,9 @@ namespace Step15
             int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             List<int> nums = Enumerable.Range(1, NM[0]).ToList();
             List<bool> visit = Enumerable.Repeat(false, NM[0]).ToList();
-            printPermutation(NM[1], nums, visit, new List<int>());
+            StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+            printPermutation(NM[1], nums, visit, new List<int>(), sw);
+            sw.Close();
 
             // Q15650 - N과 M (2)
 
