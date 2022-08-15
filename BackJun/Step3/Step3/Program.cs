@@ -40,7 +40,25 @@ namespace Step3
                 sum += i;
             }
             Console.Write(sum);
-            
+            */
+            // Q25304 - 영수증
+            int X = int.Parse(Console.ReadLine());
+            int N = int.Parse(Console.ReadLine());
+            while (N-- > 0)
+            {
+                int[] ab = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+                X -= ab[0] * ab[1];
+            }
+            if (X == 0)
+            {
+                Console.WriteLine("Yes");
+            }
+            else
+            {
+                Console.WriteLine("No");
+            }
+
+            /*
             // Q15552 - 빠른 A+B
             int T = int.Parse(Console.ReadLine());
             StringBuilder sb = new StringBuilder();
@@ -147,7 +165,7 @@ namespace Step3
                     break;
                 }                               
             }
-            */
+            
             // Q1110 - 더하기 사이클
             int N = int.Parse(Console.ReadLine());
             int temp = (N % 10 + N / 10)%10 + (N % 10) * 10;
@@ -158,6 +176,7 @@ namespace Step3
                 i++;
             }
             Console.WriteLine(i);
+            */
         }
     }
 }

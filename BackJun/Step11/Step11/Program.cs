@@ -214,8 +214,16 @@ namespace Step11
 //                 }                
             }            
 
-            writer.Close();            
+            writer.Close();
+            */
+            // Q25305 - 커트라인
+            int k = int.Parse(Console.ReadLine().Split()[1]);
+            int[] xs = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            Array.Sort(xs);
+            Array.Reverse(xs);
+            Console.Write(xs[k - 1]);
             
+            /*
             // Q2108 - 통계학
             StreamWriter writer = new StreamWriter(Console.OpenStandardOutput());
             StreamReader reader = new StreamReader(Console.OpenStandardInput());
