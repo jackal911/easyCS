@@ -74,6 +74,29 @@ namespace Step15
                 }
             }
         }
+
+        // Q15652 - N과 M (4)
+        static void printRepeatedCombination(int N, int M, List<int> nums, List<int> result, int count, StreamWriter sw)
+        {
+            if (result.Count == M)
+            {
+                foreach (int e in result)
+                {
+                    sw.Write(e + " ");
+                }
+                sw.WriteLine();
+            }
+            else
+            {
+                for (int i = count; i < nums.Count; i++)
+                {
+                    count = i;
+                    result.Add(nums[i]);                    
+                    printRepeatedCombination(N, M, nums, result, count, sw);
+                    result.Remove(nums[i]);
+                }
+            }
+        }
         static void Main(string[] args)
         {
             /*
@@ -92,16 +115,21 @@ namespace Step15
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printCombination(NM[0], NM[1], nums, new List<int>(), count, sw);
             sw.Close();
-            */
+            
             // Q15651 - N과 M (3)
             int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             List<int> nums = Enumerable.Range(1, NM[0]).ToList();
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printRepeatedPermutation(NM[1], nums, new List<int>(), sw);
             sw.Close();
-
+            */
             // Q15652 - N과 M (4)
-
+            int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            List<int> nums = Enumerable.Range(1, NM[0]).ToList();
+            int count = 0;
+            StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+            printRepeatedCombination(NM[0], NM[1], nums, new List<int>(), count, sw);
+            sw.Close();
 
             // Q9663 - N-Queen
 
