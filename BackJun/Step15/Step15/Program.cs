@@ -55,6 +55,25 @@ namespace Step15
                 }
             }
         }
+
+        // Q15651 - N과 M (3)
+        static void printRepeatedPermutation(int M, List<int> lst, List<int> result, StreamWriter sw)
+        {
+            if (M == result.Count)
+            {
+                result.ForEach(s => sw.Write(s + " "));
+                sw.WriteLine();
+            }
+            else
+            {
+                for (int i = 0; i < lst.Count; i++)
+                {
+                    result.Add(lst[i]);
+                    printRepeatedPermutation(M, lst, result, sw);
+                    result.RemoveAt(result.Count-1);
+                }
+            }
+        }
         static void Main(string[] args)
         {
             /*
@@ -65,7 +84,7 @@ namespace Step15
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printPermutation(NM[1], nums, visit, new List<int>(), sw);
             sw.Close();
-            */
+            
             // Q15650 - N과 M (2)
             int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             List<int> nums = Enumerable.Range(1, NM[0]).ToList();
@@ -73,9 +92,13 @@ namespace Step15
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printCombination(NM[0], NM[1], nums, new List<int>(), count, sw);
             sw.Close();
-
+            */
             // Q15651 - N과 M (3)
-
+            int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            List<int> nums = Enumerable.Range(1, NM[0]).ToList();
+            StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+            printRepeatedPermutation(NM[1], nums, new List<int>(), sw);
+            sw.Close();
 
             // Q15652 - N과 M (4)
 
