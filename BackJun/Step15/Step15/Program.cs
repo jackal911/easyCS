@@ -31,8 +31,33 @@ namespace Step15
                 }
             }
         }
+
+        // Q15650 - N과 M (2)
+        static void printCombination(int N, int M, List<int> nums, List<int> result, int count, StreamWriter sw)
+        {
+            if (result.Count == M)
+            {
+                foreach (int e in result)
+                {
+                    sw.Write(e + " ");
+                }
+                sw.WriteLine();
+            }
+            else
+            {
+                for (int i = count; i < nums.Count; i++)
+                {
+                    count = i;
+                    result.Add(nums[i]);
+                    count++;
+                    printCombination(N, M, nums, result, count, sw);
+                    result.Remove(nums[i]);
+                }
+            }
+        }
         static void Main(string[] args)
         {
+            /*
             // Q15649 - N과 M (1)
             int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             List<int> nums = Enumerable.Range(1, NM[0]).ToList();
@@ -40,9 +65,14 @@ namespace Step15
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printPermutation(NM[1], nums, visit, new List<int>(), sw);
             sw.Close();
-
+            */
             // Q15650 - N과 M (2)
-
+            int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            List<int> nums = Enumerable.Range(1, NM[0]).ToList();
+            int count = 0;
+            StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+            printCombination(NM[0], NM[1], nums, new List<int>(), count, sw);
+            sw.Close();
 
             // Q15651 - N과 M (3)
 
