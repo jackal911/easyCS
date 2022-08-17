@@ -97,6 +97,7 @@ namespace Step15
                 }
             }
         }
+
         static void Main(string[] args)
         {
             /*
@@ -132,7 +133,8 @@ namespace Step15
             sw.Close();
 
             // Q9663 - N-Queen
-
+            int N = int.Parse(Console.ReadLine());
+            int[,] chessBoard = new int[N,N];
 
             // Q2580 - 스도쿠
 
