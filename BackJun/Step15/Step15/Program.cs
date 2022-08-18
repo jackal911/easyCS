@@ -98,6 +98,47 @@ namespace Step15
             }
         }
 
+        // Q9663 - N-Queen
+        static int[,] checkDeadZone(int row, int col, int[,] chessBoard)
+        {
+            int N = chessBoard.GetLength(0);
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if (i == row || j == col || Math.Abs(i-row) == Math.Abs(j-col))
+                    {
+                        chessBoard[i, j]++;
+                    }
+                }
+            }
+            return chessBoard;
+        }
+        static int NQueen(int[,] chessBoard, int startRow = 0, int startCol = 0, int chessCount = 0, int completeCount = 0)
+        {
+            int N = chessBoard.GetLength(0);
+            for (int i = startRow; i < N; i++)
+            {
+                for (int j = startCol; j < N; j++)
+                {
+                    if (chessBoard[i, j] == 0)
+                    {
+                        chessCount++;
+                        if (chessCount == N)
+                        {
+                            completeCount++;
+                        }
+                        else
+                        {
+                            chessBoard = checkDeadZone(i, j, chessBoard);
+                            
+                        }
+                    }
+                }
+            }
+            return chessCount;
+        }
+
         static void Main(string[] args)
         {
             /*
@@ -123,7 +164,7 @@ namespace Step15
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printRepeatedPermutation(NM[1], nums, new List<int>(), sw);
             sw.Close();
-            */
+            
             // Q15652 - N과 M (4)
             int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
             List<int> nums = Enumerable.Range(1, NM[0]).ToList();
@@ -131,10 +172,27 @@ namespace Step15
             StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
             printRepeatedCombination(NM[0], NM[1], nums, new List<int>(), count, sw);
             sw.Close();
-
+            */
             // Q9663 - N-Queen
             int N = int.Parse(Console.ReadLine());
-            int[,] chessBoard = new int[N,N];
+            int[] s = new int[N];
+            int[,] chessBoard = new int[N, N];
+
+            Console.WriteLine(chessBoard[2,0]);
+            foreach (int box in chessBoard)
+            {
+                Console.WriteLine(chessBoard.GetLength(0));
+            }
+//             List<List<int>> chessBoard = Enumerable.Repeat(Enumerable.Repeat(0, N).ToList(), N).ToList();
+            
+//             foreach (var row in chessBoard)
+//             {
+//                 foreach (int box in row)
+//                 {
+//                     Console.Write(box + " ");
+//                 }
+//                 Console.WriteLine();
+//             }
 
             // Q2580 - 스도쿠
 
