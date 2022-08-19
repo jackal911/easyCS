@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Diagnostics;
 
 namespace Step15
 {
@@ -99,7 +100,7 @@ namespace Step15
         }
 
         // Q9663 - N-Queen
-        static int[,] checkDeadZone(int row, int col, int[,] chessBoard)
+        static void checkDeadZone(int[,] chessBoard, int row, int col)
         {
             int N = chessBoard.GetLength(0);
             for (int i = 0; i < N; i++)
@@ -108,36 +109,116 @@ namespace Step15
                 {
                     if (i == row || j == col || Math.Abs(i-row) == Math.Abs(j-col))
                     {
-                        chessBoard[i, j]++;
+                        chessBoard[i,j]++;						
                     }
                 }
             }
-            return chessBoard;
         }
-        static int NQueen(int[,] chessBoard, int startRow = 0, int startCol = 0, int chessCount = 0, int completeCount = 0)
+		static void releaseDeadZone(int[,] chessBoard, int row, int col)
+		{
+			int N = chessBoard.GetLength(0);
+			for (int i = 0; i < N; i++)
+			{
+				for (int j = 0; j < N; j++)
+				{
+					if (i == row || j == col || Math.Abs(i - row) == Math.Abs(j - col))
+					{
+						chessBoard[i,j]--;
+					}
+				}
+			}
+		}
+		static int NQueen(int[,] chessBoard, int[,] points, ref int chessCount, int startRow = 0, int completeCount = 0)
         {
+            //int[,] preChessBoard; 
             int N = chessBoard.GetLength(0);
             for (int i = startRow; i < N; i++)
             {
-                for (int j = startCol; j < N; j++)
+				bool isZeroExist = false;
+                for (int j = 0; j < N; j++)
                 {
-                    if (chessBoard[i, j] == 0)
+                    if (chessBoard[i,j] == 0)
                     {
+						isZeroExist = true;
                         chessCount++;
                         if (chessCount == N)
                         {
-                            completeCount++;
+                            completeCount++;							
+							isZeroExist = false;
+							Console.WriteLine(getPointsPicture(points));
+							//Console.WriteLine(chessBoardToString(chessBoard));
+							//Console.WriteLine("Sucess {0}\n", completeCount);
                         }
                         else
                         {
-                            chessBoard = checkDeadZone(i, j, chessBoard);
-                            
+							//int[,] tempChessBoard = (int[,])chessBoard.Clone();
+							//Array.Copy(chessBoard, tempChessBoard, 0);
+                            //preChessBoard = new int[,]();
+                            //chessBoard.Keys.ToList().ForEach(s=> preChessBoard.Add(s, Array.ConvertAll(chessBoard[s], x=>x)));
+                            checkDeadZone(chessBoard, i, j);
+							points[i, j]++;
+                            //Console.WriteLine(chessBoardToString(chessBoard)); // 삭제 필요
+							completeCount = NQueen(chessBoard, points, ref chessCount, i + 1, completeCount);
+							//chessBoard = (int[,])tempChessBoard.Clone();
+							//Array.Copy(tempChessBoard, chessBoard, 0);
+							releaseDeadZone(chessBoard, i, j);
+							points[i, j]--;
+                            //preChessBoard.Keys.ToList().ForEach(s => preChessBoard[s].CopyTo(chessBoard[s], 0)); // 원상복구
                         }
+                        chessCount--;
                     }
                 }
-            }
-            return chessCount;
+				if (isZeroExist == false)
+				{
+					break;
+				}
+            }            
+            //Console.WriteLine();
+            return completeCount;
         }
+        static string chessBoardToString(int[,] chessBoard)
+        {            
+            string result = "";
+			int N = chessBoard.GetLength(0);
+			for (int i = 0; i < N; i++)
+			{
+				for (int j = 0; j < N; j++)
+				{
+					result += chessBoard[i,j];
+				}
+				result += "\n";
+			}
+//             foreach (var row in chessBoard)
+//             {
+//                 foreach (int count in row)
+//                 {
+//                     result += count;
+//                 }
+//                 result += "\n";
+//             }
+			return result;
+		}
+		static string getPointsPicture(int[,] points)
+		{
+			string result = "";
+			int N = points.GetLength(0);
+			for (int i = 0; i < N; i++)
+			{
+				for (int j = 0; j < N; j++)
+				{
+					if (points[i, j] == 1)
+					{
+						result += "1";
+					}
+					else
+					{
+						result += "0";
+					}
+				}
+				result += "\n";
+			}
+			return result;
+		}
 
         static void Main(string[] args)
         {
@@ -175,15 +256,22 @@ namespace Step15
             */
             // Q9663 - N-Queen
             int N = int.Parse(Console.ReadLine());
-            int[] s = new int[N];
-            int[,] chessBoard = new int[N, N];
+            Stopwatch stopwatch = new Stopwatch(); //객체 선언
+            stopwatch.Start(); // 시간측정 시작
 
-            Console.WriteLine(chessBoard[2,0]);
-            foreach (int box in chessBoard)
-            {
-                Console.WriteLine(chessBoard.GetLength(0));
-            }
-//             List<List<int>> chessBoard = Enumerable.Repeat(Enumerable.Repeat(0, N).ToList(), N).ToList();
+            int[,] chessBoard = new int[N,N];
+			int[,] points = new int[N, N];
+//             for (int i = 0; i < N; i++)
+//             {
+//                 chessBoard.Add(Enumerable.Repeat(0, N).ToList());
+//             }
+            int chessCount = 0;
+			Console.WriteLine(NQueen(chessBoard, points, ref chessCount));
+
+            stopwatch.Stop(); //시간측정 끝
+
+            System.Console.WriteLine("time : " +
+                               stopwatch.ElapsedMilliseconds + "ms");
             
 //             foreach (var row in chessBoard)
 //             {
