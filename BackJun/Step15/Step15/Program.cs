@@ -140,19 +140,68 @@ namespace Step15
         }
 
 		// Q2580 - 스도쿠
-// 		static string doSudoku(List<string> sudoku)
-// 		{
-// 			bool isFinished = false;
-// 			while (isFinished == false)
-// 			{
-// 				allCheck(sudoku);
-// 				if (solution.Count == 0)
-// 				{
-// 					isFinished = true;
-// 				}
-// 			}
-// 			
-// 		}
+		static string doSudoku(List<List<int>> sudoku)
+		{
+			string result = "";
+			bool isFinished = false;
+			while (isFinished == false)
+			{
+				allCheck(sudoku);
+				if (solution.Count == 0)
+				{
+					isFinished = true;
+				}
+			}
+			return result;
+		}
+
+		static void allCheck(List<List<int>> sudoku)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				List<int> row = sudoku[i];
+				List<int> column = sudoku.Select(s => s[i]).ToList();
+				List<int> rowCheck = oneToNine.ToList();
+				List<int> columnCheck = oneToNine.ToList();
+				rowCheck = rowCheck.Except(row).ToList();
+				columnCheck = columnCheck.Except(column).ToList();
+				for (int j = 0; j < 9; j++)
+				{
+					string key = i + "" + j;
+					if (row[j] == 0)
+					{
+						if (rowCheck.Count == 1)
+						{
+							if (solution.ContainsKey(key))
+							{
+								solution.Remove(key);
+							}
+							sudoku[i][j] = rowCheck[0];
+						}
+						else
+						{
+							solution.Add(key, rowCheck);
+						}
+					}
+					if (i != j && column[j] == 0)
+					{
+						if (columnCheck.Count == 1)
+						{
+							if (solution.ContainsKey(key))
+							{
+								solution.Remove(key);
+							}
+							sudoku[i][j] = columnCheck[0];
+						}
+						else
+						{
+							solution.Add(key, columnCheck);
+						}
+					}
+				}
+				//Console.WriteLine("row : {0}, column : {1}", row, column);
+			}
+		}
 
         static void Main(string[] args)
         {
@@ -212,15 +261,17 @@ namespace Step15
 //             }
 			*/
 			// Q2580 - 스도쿠
-			List<string> sudoku = new List<string>();
+			List<List<int>> sudoku = new List<List<int>>();
 			int[] a = new int[9];
 			for (int i = 0; i < 9; i++)
 			{
-				sudoku.Add(Console.ReadLine());
+				sudoku.Add(Console.ReadLine().Replace(" ", "").ToList().ConvertAll(s=>(int)s-48));
 			}
 			string b = "abc";
+
+			//doSudoku(sudoku);
+
 			
-			Console.WriteLine("Hello");
             
             // Q14888 - 연산자 끼워넣기
 
