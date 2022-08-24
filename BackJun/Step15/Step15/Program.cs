@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Dynamic;
+using System.Diagnostics;
 
 namespace Step15
 {
@@ -10,8 +10,9 @@ namespace Step15
     class Program
     {
 		// Q2580 - 스도쿠
-		static Dictionary<string, dynamic> solution = new Dictionary<string, dynamic>();
+		static Dictionary<string, List<int>> solution = new Dictionary<string, List<int>>();
 		static IEnumerable<int> oneToNine = Enumerable.Range(1, 9);
+		static StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
 
         // Q15649 - N과 M (1)
         static void printPermutation(int M, List<int> lst, List<bool> visit, List<int> result, StreamWriter sw)
@@ -140,67 +141,176 @@ namespace Step15
         }
 
 		// Q2580 - 스도쿠
-		static string doSudoku(List<List<int>> sudoku)
+		static List<List<int>> doSudoku(List<List<int>> sudoku, int startRow = 0)
 		{
-			string result = "";
-			bool isFinished = false;
-			while (isFinished == false)
+			IEnumerable<List<int>> saveSudoku = sudoku.Select(s => s.ToArray().ToList());
+			// 시도1
+// 			while (isFinished == false)
+// 			{
+// 				allCheck(sudoku);				
+// 				if (solution.Count == 0)
+// 				{
+// 					isFinished = true;
+			// 				}
+			// 			}
+			// 시도2
+// 			while (isFinished == false)
+// 			{
+// 				for (int i = 0; i < 9; i++)
+// 				{
+// 					for (int j = 0; j < 9; j++)
+// 					{
+// 						if (sudoku[i][j] == 0)
+// 						{
+// 							checkThisOut(sudoku, i, j);
+// 						}
+// 					}
+// 				}
+// 				if (solution.Count == 0)
+// 				{
+// 					isFinished = true;
+// 				}				
+// 			}
+// 			sudokuToString(sudoku);
+			// 시도3
+// 			if (isBeautifulCycle(sudoku) == true)
+// 			{
+// 				return;
+// 			}
+// 			else
+// 			{
+// 				foreach (var kv in solution)
+// 				{
+// 
+// 				}
+// 				string ij = solution.First().Key;
+// 				int i = (int)ij[0] - 48;
+// 				int j = (int)ij[1] - 48;
+// 				sudoku[i][j] = solution[ij][saveSolutionPoint];
+// 				if (isBeautifulCycle(sudoku) == true)
+// 				{
+// 					return;
+// 				}
+			// 			}
+			// 시도4
+			for (int i = startRow; i < 9; i++)
 			{
-				allCheck(sudoku);
-				if (solution.Count == 0)
-				{
-					isFinished = true;
-				}
-			}
-			return result;
-		}
-
-		static void allCheck(List<List<int>> sudoku)
-		{
-			for (int i = 0; i < 9; i++)
-			{
-				List<int> row = sudoku[i];
-				List<int> column = sudoku.Select(s => s[i]).ToList();
-				List<int> rowCheck = oneToNine.ToList();
-				List<int> columnCheck = oneToNine.ToList();
-				rowCheck = rowCheck.Except(row).ToList();
-				columnCheck = columnCheck.Except(column).ToList();
 				for (int j = 0; j < 9; j++)
 				{
-					string key = i + "" + j;
-					if (row[j] == 0)
+					if (sudoku[i][j] == 0)
 					{
-						if (rowCheck.Count == 1)
+						List<int> checkList = checkThisOut(sudoku, i, j);
+						foreach (var num in checkList)
 						{
-							if (solution.ContainsKey(key))
+							sudoku[i][j] = num;
+							if (checkList.Count > 1)
 							{
-								solution.Remove(key);
+								sudoku = doSudoku(sudoku, i);
 							}
-							sudoku[i][j] = rowCheck[0];
-						}
-						else
-						{
-							solution.Add(key, rowCheck);
-						}
-					}
-					if (i != j && column[j] == 0)
-					{
-						if (columnCheck.Count == 1)
-						{
-							if (solution.ContainsKey(key))
+							else if (checkList.Count == 0)
 							{
-								solution.Remove(key);
+								return saveSudoku.ToList();
 							}
-							sudoku[i][j] = columnCheck[0];
-						}
-						else
-						{
-							solution.Add(key, columnCheck);
 						}
 					}
 				}
-				//Console.WriteLine("row : {0}, column : {1}", row, column);
 			}
+			sudokuToString(sudoku);
+			return sudoku;
+		}
+
+// 		static bool isBeautifulCycle(List<List<int>> sudoku)
+// 		{
+// 			bool isBeautiful = true;
+// 			for (int i = 0; i < 9; i++)
+// 			{
+// 				for (int j = 0; j < 9; j++)
+// 				{
+// 					if (sudoku[i][j] == 0)
+// 					{
+// 						if (checkThisOut(sudoku, i, j) == false)
+// 						{
+// 							isBeautiful = false;
+// 						}
+// 					}
+// 				}
+// 			}
+// 			return isBeautiful;
+// 		}
+
+		static List<int> checkThisOut(List<List<int>> sudoku, int i, int j)
+		{
+			List<int> row = sudoku[i];
+			List<int> column = sudoku.Select(s => s[j]).ToList();
+			List<int> box = new List<int>();
+			List<int> rowCheck = oneToNine.Except(row).ToList();
+			List<int> columnCheck = oneToNine.Except(column).ToList();
+			int boxRowStart = (i / 3) * 3;
+			int boxColStart = (j / 3) * 3;
+			for (int k = 0; k < 3; k++)
+			{
+				for (int l = 0; l < 3; l++)
+				{
+					box.Add(sudoku[boxRowStart + k][boxColStart + l]);
+				}
+			}
+			List<int> boxCheck = oneToNine.Except(box).ToList();
+			string key = i + "" + j;
+			List<int> allCheckList = rowCheck.Intersect(columnCheck).Intersect(boxCheck).ToList();
+			//Console.WriteLine("row : {0}, column : {1}", row, column);
+			return allCheckList;
+		}
+
+// 		static bool checkThisOut(List<List<int>> sudoku, int i, int j)
+// 		{
+// 			bool onlyOne = false;
+// 			List<int> row = sudoku[i];
+// 			List<int> column = sudoku.Select(s => s[j]).ToList();
+// 			List<int> box = new List<int>();
+// 			List<int> rowCheck = oneToNine.Except(row).ToList();
+// 			List<int> columnCheck = oneToNine.Except(column).ToList();
+// 			int boxRowStart = (i / 3) * 3;
+// 			int boxColStart = (j / 3) * 3;
+// 			for (int k = 0; k < 3; k++)
+// 			{
+// 				for (int l = 0; l < 3; l++)
+// 				{
+// 					box.Add(sudoku[boxRowStart + k][boxColStart + l]);
+// 				}
+// 			}
+// 			List<int> boxCheck = oneToNine.Except(box).ToList();
+// 			string key = i + "" + j;
+// 			List<int> allcheck = rowCheck.Intersect(columnCheck).Intersect(boxCheck).ToList();
+// 
+// 			if (solution.ContainsKey(key))
+// 			{
+// 				solution.Remove(key);
+// 			}
+// 
+// 			if (allcheck.Count == 1)
+// 			{
+// 				sudoku[i][j] = allcheck[0];
+// 				onlyOne = true;
+// 			}
+// 			else
+// 			{
+// 				solution.Add(key, allcheck);
+// 			}
+// 			//Console.WriteLine("row : {0}, column : {1}", row, column);
+// 			return onlyOne;
+// 		}
+
+		static void sudokuToString(List<List<int>> sudoku)
+		{
+			foreach (var lst in sudoku)
+			{
+				foreach (int num in lst)
+				{
+					sw.Write(num + " ");
+				}
+				sw.WriteLine();
+			}
+			sw.Flush();
 		}
 
         static void Main(string[] args)
@@ -262,15 +372,15 @@ namespace Step15
 			*/
 			// Q2580 - 스도쿠
 			List<List<int>> sudoku = new List<List<int>>();
-			int[] a = new int[9];
 			for (int i = 0; i < 9; i++)
 			{
 				sudoku.Add(Console.ReadLine().Replace(" ", "").ToList().ConvertAll(s=>(int)s-48));
 			}
-			string b = "abc";
-
-			//doSudoku(sudoku);
-
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
+			doSudoku(sudoku);
+			sw.Stop();
+			Console.WriteLine(sw.ElapsedMilliseconds);
 			
             
             // Q14888 - 연산자 끼워넣기
