@@ -10,9 +10,15 @@ namespace Step15
     class Program
     {
 		// Q2580 - 스도쿠
-		static Dictionary<string, List<int>> solution = new Dictionary<string, List<int>>();
-		static IEnumerable<int> oneToNine = Enumerable.Range(1, 9);
+		static List<List<int>> board = new List<List<int>>(9);
+		static List<List<int>> point = new List<List<int>>(81);
 		static StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+		//static Stopwatch stopwatch = new Stopwatch();
+
+		// Q14888 - 연산자 끼워넣기
+		static int numCount = 0;
+
+        // Q14889 - 스타트와 링크
 
         // Q15649 - N과 M (1)
         static void printPermutation(int M, List<int> lst, List<bool> visit, List<int> result, StreamWriter sw)
@@ -141,177 +147,96 @@ namespace Step15
         }
 
 		// Q2580 - 스도쿠
-		static List<List<int>> doSudoku(List<List<int>> sudoku, int startRow = 0)
+		//기본 스도쿠 규칙을 만족하는지 확인한다.
+		static bool check(int y, int x, int num)
 		{
-			IEnumerable<List<int>> saveSudoku = sudoku.Select(s => s.ToArray().ToList());
-			// 시도1
-// 			while (isFinished == false)
-// 			{
-// 				allCheck(sudoku);				
-// 				if (solution.Count == 0)
-// 				{
-// 					isFinished = true;
-			// 				}
-			// 			}
-			// 시도2
-// 			while (isFinished == false)
-// 			{
-// 				for (int i = 0; i < 9; i++)
-// 				{
-// 					for (int j = 0; j < 9; j++)
-// 					{
-// 						if (sudoku[i][j] == 0)
-// 						{
-// 							checkThisOut(sudoku, i, j);
-// 						}
-// 					}
-// 				}
-// 				if (solution.Count == 0)
-// 				{
-// 					isFinished = true;
-// 				}				
-// 			}
-// 			sudokuToString(sudoku);
-			// 시도3
-// 			if (isBeautifulCycle(sudoku) == true)
-// 			{
-// 				return;
-// 			}
-// 			else
-// 			{
-// 				foreach (var kv in solution)
-// 				{
-// 
-// 				}
-// 				string ij = solution.First().Key;
-// 				int i = (int)ij[0] - 48;
-// 				int j = (int)ij[1] - 48;
-// 				sudoku[i][j] = solution[ij][saveSolutionPoint];
-// 				if (isBeautifulCycle(sudoku) == true)
-// 				{
-// 					return;
-// 				}
-			// 			}
-			// 시도4
-			for (int i = startRow; i < 9; i++)
+			//x,y축에 동일한 수가 존재하는지 확인
+			for (int i = 0; i < 9; i++)
 			{
-				for (int j = 0; j < 9; j++)
+				if (board[y][i] == num)
+					return false;
+				else if (board[i][x] == num)
+					return false;
+			}
+			//3*3칸에 동일한 수가 존재하는지 확인
+			for (int i = (y / 3) * 3; i < (y / 3) * 3 + 3; i++)
+			{
+				for (int j = (x / 3) * 3; j < (x / 3) * 3 + 3; j++)
 				{
-					if (sudoku[i][j] == 0)
+					if (board[i][j] == num)
+						return false;
+				}
+			}
+			//동일한 수가 없으면 true를 반환
+			return true;
+		}
+
+		//스도쿠에 아직 발견되지 않은 수의 개수만큼 재귀법을 활용해 해결하도록 하였다.
+		static void solve_sudoku(int N)
+		{
+			//만일 N에 도달할 하였다면, 모든 조건을 만족시키는 해답이다.
+			//즉, 출력을 하고 함수를 종료한다.
+			if (N == point.Count)
+			{
+				for (int i = 0; i < 9; i++)
+				{
+					for (int j = 0; j < 9; j++)
 					{
-						List<int> checkList = checkThisOut(sudoku, i, j);
-						foreach (var num in checkList)
-						{
-							sudoku[i][j] = num;
-							if (checkList.Count > 1)
-							{
-								sudoku = doSudoku(sudoku, i);
-							}
-							else if (checkList.Count == 0)
-							{
-								return saveSudoku.ToList();
-							}
-						}
+						sw.Write(board[i][j] + " ");
+					}
+					sw.WriteLine();
+				}
+				sw.Close();
+				//stopwatch.Stop();
+				//Console.WriteLine(stopwatch.ElapsedMilliseconds);
+				Environment.Exit(0);
+			}
+			else
+			{
+				//이번 수의 y,x좌표를 vector에서 가져온다.
+				int y = point[N][0];
+				int x = point[N][1];
+				//1~9까지 모든 수를 넣어본다.
+				for (int num = 1; num <= 9; num++)
+				{
+					//조건을 만족하는지 확인
+					if (check(y, x, num))
+					{
+						//조건을 만족하면 수를 넣고
+						board[y][x] = num;
+						//재귀함수를 호출한다.
+						solve_sudoku(N + 1);
+						//이후 함수가 종료된 이후에는 0으로 초기화를 해준다.
+						board[y][x] = 0;
 					}
 				}
 			}
-			sudokuToString(sudoku);
-			return sudoku;
 		}
 
-// 		static bool isBeautifulCycle(List<List<int>> sudoku)
-// 		{
-// 			bool isBeautiful = true;
-// 			for (int i = 0; i < 9; i++)
-// 			{
-// 				for (int j = 0; j < 9; j++)
-// 				{
-// 					if (sudoku[i][j] == 0)
-// 					{
-// 						if (checkThisOut(sudoku, i, j) == false)
-// 						{
-// 							isBeautiful = false;
-// 						}
-// 					}
-// 				}
-// 			}
-// 			return isBeautiful;
-// 		}
-
-		static List<int> checkThisOut(List<List<int>> sudoku, int i, int j)
+		// Q14888 - 연산자 끼워넣기
+		static void makePermutation(int M, List<int> lst, List<bool> visit, List<int> result, HashSet<List<int>> possibility)
 		{
-			List<int> row = sudoku[i];
-			List<int> column = sudoku.Select(s => s[j]).ToList();
-			List<int> box = new List<int>();
-			List<int> rowCheck = oneToNine.Except(row).ToList();
-			List<int> columnCheck = oneToNine.Except(column).ToList();
-			int boxRowStart = (i / 3) * 3;
-			int boxColStart = (j / 3) * 3;
-			for (int k = 0; k < 3; k++)
+			if (M == result.Count)
 			{
-				for (int l = 0; l < 3; l++)
+				possibility.Add(result.ToList());
+			}
+			else
+			{
+				for (int i = 0; i < lst.Count; i++)
 				{
-					box.Add(sudoku[boxRowStart + k][boxColStart + l]);
+					if (visit[i] == false)
+					{
+						result.Add(lst[i]);
+						visit[i] = true;
+						makePermutation(M, lst, visit, result, possibility);
+						visit[i] = false;
+						result.Remove(lst[i]);
+					}
 				}
 			}
-			List<int> boxCheck = oneToNine.Except(box).ToList();
-			string key = i + "" + j;
-			List<int> allCheckList = rowCheck.Intersect(columnCheck).Intersect(boxCheck).ToList();
-			//Console.WriteLine("row : {0}, column : {1}", row, column);
-			return allCheckList;
 		}
 
-// 		static bool checkThisOut(List<List<int>> sudoku, int i, int j)
-// 		{
-// 			bool onlyOne = false;
-// 			List<int> row = sudoku[i];
-// 			List<int> column = sudoku.Select(s => s[j]).ToList();
-// 			List<int> box = new List<int>();
-// 			List<int> rowCheck = oneToNine.Except(row).ToList();
-// 			List<int> columnCheck = oneToNine.Except(column).ToList();
-// 			int boxRowStart = (i / 3) * 3;
-// 			int boxColStart = (j / 3) * 3;
-// 			for (int k = 0; k < 3; k++)
-// 			{
-// 				for (int l = 0; l < 3; l++)
-// 				{
-// 					box.Add(sudoku[boxRowStart + k][boxColStart + l]);
-// 				}
-// 			}
-// 			List<int> boxCheck = oneToNine.Except(box).ToList();
-// 			string key = i + "" + j;
-// 			List<int> allcheck = rowCheck.Intersect(columnCheck).Intersect(boxCheck).ToList();
-// 
-// 			if (solution.ContainsKey(key))
-// 			{
-// 				solution.Remove(key);
-// 			}
-// 
-// 			if (allcheck.Count == 1)
-// 			{
-// 				sudoku[i][j] = allcheck[0];
-// 				onlyOne = true;
-// 			}
-// 			else
-// 			{
-// 				solution.Add(key, allcheck);
-// 			}
-// 			//Console.WriteLine("row : {0}, column : {1}", row, column);
-// 			return onlyOne;
-// 		}
-
-		static void sudokuToString(List<List<int>> sudoku)
-		{
-			foreach (var lst in sudoku)
-			{
-				foreach (int num in lst)
-				{
-					sw.Write(num + " ");
-				}
-				sw.WriteLine();
-			}
-			sw.Flush();
-		}
+		// Q14889 - 스타트와 링크
 
         static void Main(string[] args)
         {
@@ -369,24 +294,41 @@ namespace Step15
 //                 }
 //                 Console.WriteLine();
 //             }
-			*/
+			
 			// Q2580 - 스도쿠
-			List<List<int>> sudoku = new List<List<int>>();
 			for (int i = 0; i < 9; i++)
 			{
-				sudoku.Add(Console.ReadLine().Replace(" ", "").ToList().ConvertAll(s=>(int)s-48));
+				string input = Console.ReadLine().Replace(" ", "");
+				board.Add(input.ToList().ConvertAll(s => (int)s - 48));
+				for (int j = 0; j < 9; j++)
+				{
+					if (input[j] == '0')
+					{
+						point.Add(new List<int>() { i, j });
+					}
+				}
 			}
-			Stopwatch sw = new Stopwatch();
-			sw.Start();
-			doSudoku(sudoku);
-			sw.Stop();
-			Console.WriteLine(sw.ElapsedMilliseconds);
-			
-            
-            // Q14888 - 연산자 끼워넣기
+			//stopwatch.Start();
+			solve_sudoku(0);
+            */
+			// Q14888 - 연산자 끼워넣기
+			List<int> a = new List<int>() { 1, 2, 3 };
+			List<int> b = new List<int>() { 1, 2, 3 };
 
+			numCount = int.Parse(Console.ReadLine());
+			List<int> nums = Console.ReadLine().Split().ToList().ConvertAll(s=>int.Parse(s));
+			List<int> operators = new List<int>();
+			string input = Console.ReadLine().Replace(" ", "");
+			for (int i = 0; i < 4; i++)
+			{
+				operators.AddRange(Enumerable.Repeat(i, (int)input[i] - 48));
+			}
+			HashSet<List<int>> possibility = new HashSet<List<int>>();
+			List<bool> visit = Enumerable.Repeat(false, operators.Count).ToList();
+			List<int> result = new List<int>();
+			makePermutation(operators.Count, operators, visit, result, possibility);			
 
-            // Q14889 - 스타트와 링크
+			// Q14889 - 스타트와 링크
 
 
         }
