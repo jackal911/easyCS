@@ -16,9 +16,86 @@ namespace Step15
 		//static Stopwatch stopwatch = new Stopwatch();
 
 		// Q14888 - 연산자 끼워넣기
-		static int numCount = 0;
+		class InsertOperators
+		{
+			public int min;
+			public int max;
+			public InsertOperators()
+			{
+				min = 1000000000;
+				max = -1000000000;
+			}
+
+			public void getMinMax(List<int> nums, List<int> operators)
+			{
+				int startNum = nums[0];
+				if (nums.Count > 1)
+				{
+					for (int i = 0; i < 4; i++)
+					{
+						if (operators[i] > 0)
+						{
+							List<int> copyNums = nums.GetRange(1, nums.Count - 1);
+							List<int> copyOperators = operators.ToList();
+							copyNums[0] = getOperateResult(startNum, copyNums[0], i);
+							copyOperators[i]--;
+							getMinMax(copyNums, copyOperators);
+						}
+					}
+				}
+				else
+				{
+					if (startNum > max)
+					{
+						max = startNum;
+					}
+					if (startNum < min)
+					{
+						min = startNum;
+					}
+				}
+			}
+
+			private int getOperateResult(int startNum, int secondNum, int oper)
+			{
+				switch (oper)
+				{
+					case 0:
+						return startNum + secondNum;
+					case 1:
+						return startNum - secondNum;
+					case 2:
+						return startNum * secondNum;
+					default:
+						return startNum / secondNum;
+				}
+			}
+
+		}
 
         // Q14889 - 스타트와 링크
+		class StartAndLink
+		{
+			public int min = 2000;
+			void solution()
+			{
+				int N = int.Parse(Console.ReadLine());
+				List<List<int>> ability = new List<List<int>>(N);
+				Dictionary<string, int> colabor = new Dictionary<string, int>();
+				for (int i = 0; i < N; i++)
+				{
+					ability.Add(Console.ReadLine().Split().ToList().ConvertAll(int.Parse));
+				}
+				for (int i = 0; i < N - 1; i++)
+				{
+					for (int j = i + 1; j < N; j++)
+					{
+						colabor[i + "" + j] = ability[i][j] + ability[j][i];
+					}
+				}
+				int totalScore = colabor.Values.Sum();
+			}
+		}
 
         // Q15649 - N과 M (1)
         static void printPermutation(int M, List<int> lst, List<bool> visit, List<int> result, StreamWriter sw)
@@ -214,27 +291,7 @@ namespace Step15
 		}
 
 		// Q14888 - 연산자 끼워넣기
-		static void makePermutation(int M, List<int> lst, List<bool> visit, List<int> result, HashSet<List<int>> possibility)
-		{
-			if (M == result.Count)
-			{
-				possibility.Add(result.ToList());
-			}
-			else
-			{
-				for (int i = 0; i < lst.Count; i++)
-				{
-					if (visit[i] == false)
-					{
-						result.Add(lst[i]);
-						visit[i] = true;
-						makePermutation(M, lst, visit, result, possibility);
-						visit[i] = false;
-						result.Remove(lst[i]);
-					}
-				}
-			}
-		}
+		
 
 		// Q14889 - 스타트와 링크
 
@@ -310,27 +367,20 @@ namespace Step15
 			}
 			//stopwatch.Start();
 			solve_sudoku(0);
-            */
+            
 			// Q14888 - 연산자 끼워넣기
-			List<int> a = new List<int>() { 1, 2, 3 };
-			List<int> b = new List<int>() { 1, 2, 3 };
+			InsertOperators inOp = new InsertOperators();
 
-			numCount = int.Parse(Console.ReadLine());
-			List<int> nums = Console.ReadLine().Split().ToList().ConvertAll(s=>int.Parse(s));
-			List<int> operators = new List<int>();
-			string input = Console.ReadLine().Replace(" ", "");
-			for (int i = 0; i < 4; i++)
-			{
-				operators.AddRange(Enumerable.Repeat(i, (int)input[i] - 48));
-			}
-			HashSet<List<int>> possibility = new HashSet<List<int>>();
-			List<bool> visit = Enumerable.Repeat(false, operators.Count).ToList();
-			List<int> result = new List<int>();
-			makePermutation(operators.Count, operators, visit, result, possibility);			
+			Console.ReadLine();
+			List<int> nums = Console.ReadLine().Split().ToList().ConvertAll(int.Parse);
+			List<int> operators = Console.ReadLine().Split().ToList().ConvertAll(int.Parse);
 
+			inOp.getMinMax(nums, operators);
+			Console.WriteLine("{0}\n{1}", inOp.max, inOp.min);
+			*/
 			// Q14889 - 스타트와 링크
-
-
-        }
+			StartAndLink sal = new StartAndLink();
+			solution();
+        }		
     }
 }
