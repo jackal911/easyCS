@@ -77,7 +77,7 @@ namespace Step15
 		class StartAndLink
 		{
 			public int min = 2000;
-			void solution()
+			public void solution()
 			{
 				int N = int.Parse(Console.ReadLine());
 				List<List<int>> ability = new List<List<int>>(N);
@@ -94,7 +94,12 @@ namespace Step15
 					}
 				}
 				int totalScore = colabor.Values.Sum();
+                calMin(totalScore);
 			}
+            private void calMin(int totalScore)
+            {
+
+            }
 		}
 
         // Q15649 - N과 M (1)
@@ -380,7 +385,7 @@ namespace Step15
 			*/
 			// Q14889 - 스타트와 링크
 			StartAndLink sal = new StartAndLink();
-			solution();
+			sal.solution();
         }		
     }
 }
