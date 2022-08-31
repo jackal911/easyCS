@@ -76,12 +76,15 @@ namespace Step15
         // Q14889 - 스타트와 링크
 		class StartAndLink
 		{
-			public int min = 2000;
+			private int min = 2000;
+			private int N;
+			private Dictionary<string, int> colabor;
+			private List<List<int>> everyPossibility;
 			public void solution()
 			{
-				int N = int.Parse(Console.ReadLine());
+				N = int.Parse(Console.ReadLine());
 				List<List<int>> ability = new List<List<int>>(N);
-				Dictionary<string, int> colabor = new Dictionary<string, int>();
+				colabor = new Dictionary<string, int>();				
 				for (int i = 0; i < N; i++)
 				{
 					ability.Add(Console.ReadLine().Split().ToList().ConvertAll(int.Parse));
@@ -93,13 +96,76 @@ namespace Step15
 						colabor[i + "" + j] = ability[i][j] + ability[j][i];
 					}
 				}
-				int totalScore = colabor.Values.Sum();
-                calMin(totalScore);
+                calMin();
+				Console.WriteLine(min);
 			}
-            private void calMin(int totalScore)
-            {
-
+			private void calMin()
+			{
+				everyPossibility = new List<List<int>>((int)combination(N, N/2));
+				List<int> lst = Enumerable.Range(0, N).ToList();
+				List<int> result = new List<int>(N/2);
+				setPossibilities(lst, result);
+				for (int i = 0; i < everyPossibility.Count / 2; i++)
+				{
+					List<int> oneList = everyPossibility[i];
+					List<int> anotherList = lst.Except(oneList).ToList();
+					int oneSum = 0;
+					int anotherSum = 0;
+					for (int j = 0; j < N / 2; j++)
+					{
+						for (int k = j + 1; k < N / 2; k++)
+						{
+							int oneFirst = oneList[j];
+							int oneSecond = oneList[k];
+							int anotherFirst = anotherList[j];
+							int anotherSecond = anotherList[k];
+							oneSum += colabor[oneFirst + "" + oneSecond];
+							anotherSum += colabor[anotherFirst + "" + anotherSecond];
+						}
+					}
+					int difference = Math.Abs(oneSum - anotherSum);
+					if (min > difference)
+					{
+ 						Console.WriteLine("{0}의 합 : {1}", String.Join(",", oneList), oneSum);
+ 						Console.WriteLine("{0}의 합 : {1}", String.Join(",", anotherList), anotherSum);
+ 						Console.WriteLine("현재 min : {0}", min);
+						min = difference;
+						Console.WriteLine("바뀐 min : {0}", min);
+					}
+				}
             }
+			private void setPossibilities(List<int> lst, List<int> result, int startRow = 0)
+			{
+				if (N/2 == result.Count)
+				{
+					List<int> possible = new List<int>(N/2);
+					result.ForEach(s => possible.Add(s));
+					everyPossibility.Add(possible);
+				}
+				else
+				{
+					for (int i = startRow; i < lst.Count; i++)
+					{
+						result.Add(lst[i]);
+						setPossibilities(lst, result, i + 1);
+						result.Remove(lst[i]);
+					}
+				}
+			}
+			private long combination(long m, long n)
+			{
+				if (m < n)
+				{
+					return 0;
+				}
+				long com = 1;
+				for (long i = 0; i < n; i++)
+				{
+					com *= m--;
+					com /= i + 1;
+				}
+				return com;
+			}
 		}
 
         // Q15649 - N과 M (1)
