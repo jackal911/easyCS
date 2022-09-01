@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace Step15
 {
-    // Step15 - 백트래킹
+	// Step15 - 백트래킹 https://www.acmicpc.net/step/34
     class Program
     {
 		// Q2580 - 스도쿠
@@ -452,6 +452,6 @@ namespace Step15
 			// Q14889 - 스타트와 링크
 			StartAndLink sal = new StartAndLink();
 			sal.solution();
-        }		
+        }
     }
 }
