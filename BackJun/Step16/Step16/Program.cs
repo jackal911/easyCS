@@ -92,40 +92,38 @@ namespace Step16
 		{
 			public long solution(int N)
 			{
-				long sum = 0;
-				if (N % 2 == 0)
+				long first = 1;
+				long second = 2;
+				for (int i = 3; i <= N; i++)
 				{
-					for (int i = 0; i <= N/2; i++)
-					{
-						sum += combination(N / 2 + i, N / 2 - i);
-						sum %= 15746;
-					}
+					long temp = (first + second) % 15746;
+					first = second;
+					second = temp;
 				}
-				else
-				{
-					for (int i = 0; i <= N / 2; i++)
-					{
-						sum += combination((N + 1) / 2 + i, N / 2 - i);
-						sum %= 15746;
-					}
-				}
-				return sum;
+				return second;
 			}
-			private long combination(long m, long n)
+
+		}
+
+		// Q1149 - RGB거리
+		class RGBStreet
+		{
+			public void solution()
 			{
-				if (m < n)
+				int N = int.Parse(Console.ReadLine());
+				List<List<int>> houses = new List<List<int>>();
+				for (int i = 0; i < N; i++)
 				{
-					return 0;
+					houses.Add(Console.ReadLine().Split().ToList().ConvertAll(int.Parse));
 				}
-				long com = 1;
-				for (long i = 0; i < n; i++)
-				{
-					com *= m--;
-					com /= i + 1;
-				}
-				return com;
+				doJaeGui(houses);
+			}
+
+			private int doJaeGui(List<List<int>> houses){
+				return 1;
 			}
 		}
+
 		static void Main(string[] args)
 		{
 			/*
@@ -148,20 +146,58 @@ namespace Step16
 			while((inp = Array.ConvertAll(Console.ReadLine().Split(), int.Parse)).Any(s=>s!=-1)){
 				Console.WriteLine("w({0}, {1}, {2}) = {3}", inp[0], inp[1], inp[2], fp.w(inp[0], inp[1], inp[2]));
 			}
-			*/
+			
 			// Q1904 - 01타일
-			ZeroOneTile zot = new ZeroOneTile();
 			int N = int.Parse(Console.ReadLine());
-			Console.WriteLine(zot.solution(N));
-
+			int[] nums = new int[1000001];
+			nums[1] = 1;
+			nums[2] = 2;
+			for (int i = 3; i <= N; i++)
+			{
+				nums[i] = (nums[i-1] + nums[i-2]) % 15746;
+			}
+			Console.WriteLine(nums[N]);
+			
 			// Q9461 - 파도반 수열
-
-
+			int T = int.Parse(Console.ReadLine());
+			long[] P = new long[101];
+			P[1] = 1;
+			P[2] = 1;
+			P[3] = 1;
+			int idx = 4;
+			for (int i = 0; i < T; i++)
+			{
+				int N = int.Parse(Console.ReadLine());
+				while (idx <= N)
+				{
+					P[idx] = P[idx - 3] + P[idx - 2];
+					idx++;
+				}
+				Console.WriteLine(P[N]);
+			}
+			
 			// Q1912 - 연속합
-
-
+			Console.ReadLine();
+			int[] integers = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			int max = -1001;
+			int sum = 0;
+			foreach (int integer in integers)
+			{
+				sum += integer;
+				if (sum > max)
+				{
+					max = sum;
+				}
+				if (sum < 0)
+				{
+					sum = 0;
+				}
+			}
+			Console.WriteLine(max);
+			*/
 			// Q1149 - RGB거리
-
+			RGBStreet rs = new RGBStreet();
+			rs.solution();
 
 			// Q1932 - 정수 삼각형
 
