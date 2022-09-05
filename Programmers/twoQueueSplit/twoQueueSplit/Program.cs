@@ -9,43 +9,68 @@ namespace twoQueueSplit
 	{
 		public class Solution
 		{
- 			private int shuffleCount = 0;
- 			private long maxCount;
-			private Queue<long> q1;
-			private Queue<long> q2;
-			public int solution(int[] queue1, int[] queue2)
+			public int solution(long[] first, long[] second)
 			{
-				q1 = new Queue<long>(Array.ConvertAll(queue1, s => (long)s));
-				q2 = new Queue<long>(Array.ConvertAll(queue2, s => (long)s));
-				maxCount = q1.Count + q2.Count;
-				return doShuffle(q1, q2);
-			}
-			private int doShuffle(Queue<long> q1, Queue<long> q2)
-			{
-				while (q1.Sum() != q2.Sum())
+				List<long> totalQueue = first.Union(second).ToList();				
+				int firstCount = first.Length;
+				int secondCount = second.Length;
+				int minCount = int.MaxValue;
+				long totalSum = totalQueue.Sum();
+				if (totalSum % 2 == 1)
 				{
-					if (q1.Sum() > q2.Sum())
+					return -1;
+				}
+				long halfSum = totalSum / 2;
+				for (int i = 0; i < totalQueue.Count; i++)
+				{
+					int cycleIndex = i;
+					long curSum = 0;					
+					for (int j = 0; j < totalQueue.Count; j++)
 					{
-						q2.Enqueue(q1.Dequeue());
-					}
-					else
-					{
-						q1.Enqueue(q2.Dequeue());
-					}
-					shuffleCount++;
-					if (shuffleCount > maxCount)
-					{
-						return -1;
+						curSum += totalQueue[cycleIndex];
+						if (curSum > halfSum)
+						{
+							break;
+						}
+						else if (curSum == halfSum)
+						{
+							minCount = Math.Min(minCount, calCount(i, cycleIndex, firstCount, secondCount));
+							break;
+						}
+						else
+						{
+							cycleIndex = cycleIndex == totalQueue.Count - 1 ? 0 : cycleIndex + 1;
+						}
 					}
 				}
-				return shuffleCount;
+				return minCount == int.MaxValue ? -1 : minCount;
+			}
+			private int calCount(int startPoint, int endPoint, int firstCount, int secondCount)
+			{
+				int totalCount = firstCount + secondCount;
+				if (startPoint >= firstCount)
+				{
+					startPoint = startPoint - firstCount;
+					endPoint = (endPoint - firstCount + totalCount) % totalCount;
+					int temp = firstCount;
+					firstCount = secondCount;
+					secondCount = temp;					
+				}
+				if (endPoint < firstCount)
+				{
+					return ((endPoint + 1) + secondCount + startPoint) % totalCount;
+				}
+				else
+				{
+					return ((endPoint + 1) + secondCount + startPoint + (endPoint - firstCount + 1)) % totalCount;
+				}
 			}
 		}
 		static void Main(string[] args)
 		{
 			Solution s = new Solution();
-			int[] queue1 = new int[] { 1, 1 };
-			int[] queue2 = new int[] { 1, 5 };
+			long[] queue1 = new long[] { 1, 2, 3, 4, 5, 6, 7 };
+			long[] queue2 = new long[] { 10, 11, 12, 13, 14 };
 			Console.WriteLine(s.solution(queue1, queue2));
 		}
 	}
