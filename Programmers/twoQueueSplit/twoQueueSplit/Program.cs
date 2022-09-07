@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace twoQueueSplit
 {
@@ -9,23 +8,30 @@ namespace twoQueueSplit
 	{
 		public class Solution
 		{
-			public int solution(long[] first, long[] second)
+			public int solution(int[] first, int[] second)
 			{
-				List<long> totalQueue = first.Union(second).ToList();				
+				List<long> firstQueue = first.ToList().ConvertAll(s => (long)s);
+				List<long> secondQueue = second.ToList().ConvertAll(s => (long)s);
+				List<long> totalQueue = first.Concat(second).ToList().ConvertAll(s => (long)s);
 				int firstCount = first.Length;
 				int secondCount = second.Length;
+
 				int minCount = int.MaxValue;
 				long totalSum = totalQueue.Sum();
 				if (totalSum % 2 == 1)
 				{
 					return -1;
 				}
+				else if (totalSum / 2 == firstQueue.Sum())
+				{
+					return 0;
+				}
 				long halfSum = totalSum / 2;
 				for (int i = 0; i < totalQueue.Count; i++)
 				{
 					int cycleIndex = i;
-					long curSum = 0;					
-					for (int j = 0; j < totalQueue.Count; j++)
+					long curSum = 0;
+					for (int j = 0; j < totalQueue.Count; j++, cycleIndex = cycleIndex == totalQueue.Count - 1 ? 0 : cycleIndex + 1)
 					{
 						curSum += totalQueue[cycleIndex];
 						if (curSum > halfSum)
@@ -37,10 +43,7 @@ namespace twoQueueSplit
 							minCount = Math.Min(minCount, calCount(i, cycleIndex, firstCount, secondCount));
 							break;
 						}
-						else
-						{
-							cycleIndex = cycleIndex == totalQueue.Count - 1 ? 0 : cycleIndex + 1;
-						}
+
 					}
 				}
 				return minCount == int.MaxValue ? -1 : minCount;
@@ -58,19 +61,28 @@ namespace twoQueueSplit
 				}
 				if (endPoint < firstCount)
 				{
-					return ((endPoint + 1) + secondCount + startPoint) % totalCount;
+					if (endPoint == firstCount - 1)
+					{
+						return startPoint;
+					}
+					else
+					{
+						return ((endPoint + 1) + secondCount + startPoint);
+					}
 				}
 				else
 				{
-					return ((endPoint + 1) + secondCount + startPoint + (endPoint - firstCount + 1)) % totalCount;
+					return startPoint + (endPoint - firstCount + 1);
 				}
 			}
 		}
 		static void Main(string[] args)
 		{
 			Solution s = new Solution();
-			long[] queue1 = new long[] { 1, 2, 3, 4, 5, 6, 7 };
-			long[] queue2 = new long[] { 10, 11, 12, 13, 14 };
+			int[] queue1 = new int[] { 1, 2, 20, 51, 5, 6 };
+			int[] queue2 = new int[] { 7, 8, 9, 10, 11, 12};
+// 			int[] queue1 = new int[] { 1000000000, 1000000000, 1000000000, 1000000000 };
+// 			int[] queue2 = new int[] { 1000000000, 1000000000, 1000000000, 1000000000 };
 			Console.WriteLine(s.solution(queue1, queue2));
 		}
 	}
