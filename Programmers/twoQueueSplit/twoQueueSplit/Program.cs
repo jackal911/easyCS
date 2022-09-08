@@ -1,6 +1,7 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace twoQueueSplit
 {
@@ -8,81 +9,45 @@ namespace twoQueueSplit
 	{
 		public class Solution
 		{
-			public int solution(int[] first, int[] second)
+			private int shuffleCount = 0;
+			private long maxCount;
+			private Queue<long> q1;
+			private Queue<long> q2;
+			public int solution(int[] queue1, int[] queue2)
 			{
-				List<long> firstQueue = first.ToList().ConvertAll(s => (long)s);
-				List<long> secondQueue = second.ToList().ConvertAll(s => (long)s);
-				List<long> totalQueue = first.Concat(second).ToList().ConvertAll(s => (long)s);
-				int firstCount = first.Length;
-				int secondCount = second.Length;
-
-				int minCount = int.MaxValue;
-				long totalSum = totalQueue.Sum();
-				if (totalSum % 2 == 1)
-				{
-					return -1;
-				}
-				else if (totalSum / 2 == firstQueue.Sum())
-				{
-					return 0;
-				}
-				long halfSum = totalSum / 2;
-				for (int i = 0; i < totalQueue.Count; i++)
-				{
-					int cycleIndex = i;
-					long curSum = 0;
-					for (int j = 0; j < totalQueue.Count; j++, cycleIndex = cycleIndex == totalQueue.Count - 1 ? 0 : cycleIndex + 1)
-					{
-						curSum += totalQueue[cycleIndex];
-						if (curSum > halfSum)
-						{
-							break;
-						}
-						else if (curSum == halfSum)
-						{
-							minCount = Math.Min(minCount, calCount(i, cycleIndex, firstCount, secondCount));
-							break;
-						}
-
-					}
-				}
-				return minCount == int.MaxValue ? -1 : minCount;
+				q1 = new Queue<long>(Array.ConvertAll(queue1, s => (long)s));
+				q2 = new Queue<long>(Array.ConvertAll(queue2, s => (long)s));
+				maxCount = q1.Count + q2.Count;
+				return doShuffle(q1, q2);
 			}
-			private int calCount(int startPoint, int endPoint, int firstCount, int secondCount)
+			private int doShuffle(Queue<long> q1, Queue<long> q2)
 			{
-				int totalCount = firstCount + secondCount;
-				if (startPoint >= firstCount)
+				long q1Sum = q1.Sum();
+				long q2Sum = q1.Sum();
+				while (q1.Sum() != q2.Sum())
 				{
-					startPoint = startPoint - firstCount;
-					endPoint = (endPoint - firstCount + totalCount) % totalCount;
-					int temp = firstCount;
-					firstCount = secondCount;
-					secondCount = temp;					
-				}
-				if (endPoint < firstCount)
-				{
-					if (endPoint == firstCount - 1)
+					if (q1.Sum() > q2.Sum())
 					{
-						return startPoint;
+						q2.Enqueue(q1.Dequeue());
 					}
 					else
 					{
-						return ((endPoint + 1) + secondCount + startPoint);
+						q1.Enqueue(q2.Dequeue());
+					}
+					shuffleCount++;
+					if (shuffleCount > maxCount)
+					{
+						return -1;
 					}
 				}
-				else
-				{
-					return startPoint + (endPoint - firstCount + 1);
-				}
+				return shuffleCount;
 			}
 		}
 		static void Main(string[] args)
 		{
 			Solution s = new Solution();
-			int[] queue1 = new int[] { 1, 2, 20, 51, 5, 6 };
-			int[] queue2 = new int[] { 7, 8, 9, 10, 11, 12};
-// 			int[] queue1 = new int[] { 1000000000, 1000000000, 1000000000, 1000000000 };
-// 			int[] queue2 = new int[] { 1000000000, 1000000000, 1000000000, 1000000000 };
+			int[] queue1 = new int[] { 1, 1 };
+			int[] queue2 = new int[] { 1, 5 };
 			Console.WriteLine(s.solution(queue1, queue2));
 		}
 	}
