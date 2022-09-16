@@ -199,7 +199,7 @@ namespace Step12
                 }
             }
             Console.WriteLine(strs.Count);
-=======
+
             // Q14425 - 문자열 집합
             // 푼 사람이 없다. - 시간 초과 실패(22.7.13)
             // dictionary 쓰니까 그냥 깸/
@@ -219,10 +219,6 @@ namespace Step12
             }
             sw.WriteLine(count);
             sw.Close();
-            */
-            // Q1620 - 나는야 포켓몬 마스터 이다솜
-
->>>>>>> origin/main
         }
     }
 }

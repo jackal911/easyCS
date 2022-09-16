@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorrectBracket", "CorrectBracket\CorrectBracket.csproj", "{B883A5ED-D29C-43A9-9172-128A09AD6568}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B883A5ED-D29C-43A9-9172-128A09AD6568}.Debug|x86.ActiveCfg = Debug|x86
+		{B883A5ED-D29C-43A9-9172-128A09AD6568}.Debug|x86.Build.0 = Debug|x86
+		{B883A5ED-D29C-43A9-9172-128A09AD6568}.Release|x86.ActiveCfg = Release|x86
+		{B883A5ED-D29C-43A9-9172-128A09AD6568}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

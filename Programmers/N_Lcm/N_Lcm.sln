@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "N_Lcm", "N_Lcm\N_Lcm.csproj", "{1EB60A08-662E-4C60-9A56-B188B1BDF152}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EB60A08-662E-4C60-9A56-B188B1BDF152}.Debug|x86.ActiveCfg = Debug|x86
+		{1EB60A08-662E-4C60-9A56-B188B1BDF152}.Debug|x86.Build.0 = Debug|x86
+		{1EB60A08-662E-4C60-9A56-B188B1BDF152}.Release|x86.ActiveCfg = Release|x86
+		{1EB60A08-662E-4C60-9A56-B188B1BDF152}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
