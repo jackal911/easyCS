@@ -108,19 +108,32 @@ namespace Step16
 		// Q1149 - RGB거리
 		class RGBStreet
 		{
-			public void solution()
+			//public int minSum;
+			public HashSet<int> sums = new HashSet<int>();
+			public int maxIdx;
+			public List<List<int>> RGBstreet;			
+			public RGBStreet(List<List<int>> inpStreet)
 			{
-				int N = int.Parse(Console.ReadLine());
-				List<List<int>> houses = new List<List<int>>();
-				for (int i = 0; i < N; i++)
-				{
-					houses.Add(Console.ReadLine().Split().ToList().ConvertAll(int.Parse));
-				}
-				doJaeGui(houses);
+				this.RGBstreet = inpStreet;
+				this.maxIdx = inpStreet.Count;
+				//this.minSum = int.MaxValue;
 			}
-
-			private int doJaeGui(List<List<int>> houses){
-				return 1;
+			public void coloring(int curIdx, int removeColor = -1, int curSum = 0)
+			{
+				if (curIdx == maxIdx)
+				{
+					//Console.WriteLine(curSum);
+					//minSum = curSum > minSum ? minSum : curSum;
+					sums.Add(curSum);
+					return;
+				}
+				for (int i = 0; i < 3; i++)
+				{
+					if (i != removeColor)
+					{
+						coloring(curIdx + 1, i, curSum + RGBstreet[curIdx][i]);
+					}
+				}
 			}
 		}
 
@@ -196,8 +209,15 @@ namespace Step16
 			Console.WriteLine(max);
 			*/
 			// Q1149 - RGB거리
-			RGBStreet rs = new RGBStreet();
-			rs.solution();
+			int N = int.Parse(Console.ReadLine());
+			List<List<int>> inpStreet = new List<List<int>>();
+			for (int i = 0; i < N; i++)
+			{
+				inpStreet.Add(Array.ConvertAll(Console.ReadLine().Split(), int.Parse).ToList());
+			}
+			RGBStreet rs = new RGBStreet(inpStreet);
+			rs.coloring(0);
+			Console.WriteLine(rs.sums.Min());
 
 			// Q1932 - 정수 삼각형
 

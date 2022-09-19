@@ -46,7 +46,81 @@ namespace Step10_Recursive
 			{
 				return recursion(str, 0, str.Length - 1);
 			}
-		}		
+		}
+
+		// Q24060 - 알고리즘 수업 - 병합 정렬 1 https://www.acmicpc.net/problem/24060
+		class MergeSort
+		{
+			public int[] A;
+			public int[] tmp;
+			public int countSave;
+			public int limit;
+			public MergeSort(int[] A, int limit)
+			{
+				this.A = A;
+				this.tmp = new int[A.Length];
+				this.countSave = 0;
+				this.limit = limit;
+			}
+
+			public void printA()
+			{
+				foreach (int a in A)
+				{
+					Console.Write(a + " ");
+				}
+				Console.WriteLine();
+			}
+
+			public void merge_sort(int p, int r)
+			{
+				if (p < r)
+				{
+					int q = (p + r) / 2;
+					merge_sort(p, q);
+					merge_sort(q + 1, r);
+					merge(p, q, r);
+				}
+			}
+
+			private void merge(int p, int q, int r)
+			{
+				int i = p;
+				int j = q + 1;
+				int t = 0;
+				while (i <= q && j <= r)
+				{
+					if (A[i] <= A[j])
+					{
+						tmp[t++] = A[i++];
+					}
+					else
+					{
+						tmp[t++] = A[j++];
+					}
+				}
+				while (i <= q)
+				{
+					tmp[t++] = A[i++];
+				}
+				while (j <= r)
+				{
+					tmp[t++] = A[j++];
+				}
+				i = p;
+				t = 0;
+				while (i <= r)
+				{
+					A[i++] = tmp[t++];
+					if (++countSave == limit)
+					{
+						Console.WriteLine(A[i-1]);
+						Environment.Exit(0);
+					}
+					//printA();
+				}
+			}
+		}
 		
 		// Q17478 - 재귀함수가 뭔가요?
 		static void whatIsRecursiveFunction(int n, int i = 0)
@@ -110,7 +184,7 @@ namespace Step10_Recursive
             
 			// Q10870 - 피보나치 수 5
 			Console.WriteLine(pibo(int.Parse(Console.ReadLine())));
-			*/
+			
 			// Q25501 - 재귀의 귀재 https://www.acmicpc.net/problem/25501
 			int T = int.Parse(Console.ReadLine());
 			for (int i = 0; i < T; i++)
@@ -119,6 +193,14 @@ namespace Step10_Recursive
 				GOSUOfRecursion gosu = new GOSUOfRecursion();
 				Console.WriteLine("{0} {1}", gosu.isPalindrome(str), gosu.callCount);
 			}
+			*/
+			// Q24060 - 알고리즘 수업 - 병합 정렬 1 https://www.acmicpc.net/problem/24060
+			int[] AK = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			int[] A = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			MergeSort ms = new MergeSort(A, AK[1]);
+			ms.merge_sort(0, AK[0] - 1);
+			Console.WriteLine(-1);
+			//ms.printA();
 			
             /*
 			// Q17478 - 재귀함수가 뭔가요?
