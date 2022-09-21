@@ -358,43 +358,81 @@ namespace Step16
 				maxBitonic = Math.Max(fromEndDp[i] + fromZeroDp[i], maxBitonic);
 			}
 			Console.WriteLine(maxBitonic - 1);
-			*/
+			
 			// Q2565 - 전깃줄
 			int N = int.Parse(Console.ReadLine());
-			Dictionary<string, List<string>> noNeedDp = new Dictionary<string, List<string>>();
+			List<Tuple<int, int>> lines = new List<Tuple<int, int>>();
 			for (int i = 0; i < N; i++)
 			{
-				string newElectronicLine = Console.ReadLine();
-				noNeedDp[newElectronicLine] = new List<string>();
-				int[] newLineIndex = Array.ConvertAll(newElectronicLine.Split(), int.Parse);
-				for (int j = 0; j < noNeedDp.Count; j++)
+				int[] line = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+				lines.Add(new Tuple<int, int>(line[0], line[1]));
+			}
+			lines = lines.OrderBy(s => s.Item1).ToList();
+			int[] placeB = lines.Select(s => s.Item2).ToArray();
+			int[] LIS = new int[N];
+			for (int i = 0; i < N; i++)
+			{
+				int count = 0;
+				for (int j = 0; j <= i; j++)
 				{
-					string jthLine = noNeedDp.ElementAt(j).Key;
-					int[] jthLineIndex = Array.ConvertAll(jthLine.Split(), int.Parse);
-					if ((newLineIndex[0] - jthLineIndex[0]) * (newLineIndex[1] - jthLineIndex[1]) < 0) // 엇갈렸으면
+					if (placeB[i] > placeB[j])
 					{
-						noNeedDp[newElectronicLine].Add(jthLine); // 새 전기줄에 겹치는 줄 추가
-						noNeedDp[jthLine].Add(newElectronicLine); // 겹치는 줄에 새 전기줄 추가
+						count = Math.Max(count, LIS[j]);
 					}
 				}
+				LIS[i] = count + 1;
 			}
-
-			int removeCount = 0;
-			while (noNeedDp.Keys.Any(s => noNeedDp[s].Count > 0))
-			{
-				int maxCount = noNeedDp.Max(s => s.Value.Count);
-				string lineToRemove = noNeedDp.Where(s => s.Value.Count == maxCount).First().Key;
-				foreach (string lines in noNeedDp[lineToRemove])
-				{
-					noNeedDp[lines].Remove(lineToRemove); // 연결된놈에서 삭제할놈 삭제
-				}
-				noNeedDp[lineToRemove] = new List<string>(); // 삭제할놈이 가진 리스트 초기화
-				removeCount++;
-			}
-			Console.WriteLine(removeCount);
+			Console.WriteLine(N - LIS.Max());
+			*/
+			// 1차 시도 - 실패
+// 			int N = int.Parse(Console.ReadLine());
+// 			Dictionary<string, List<string>> noNeedDp = new Dictionary<string, List<string>>();
+// 			for (int i = 0; i < N; i++)
+// 			{
+// 				string newElectronicLine = Console.ReadLine();
+// 				noNeedDp[newElectronicLine] = new List<string>();
+// 				int[] newLineIndex = Array.ConvertAll(newElectronicLine.Split(), int.Parse);
+// 				for (int j = 0; j < noNeedDp.Count; j++)
+// 				{
+// 					string jthLine = noNeedDp.ElementAt(j).Key;
+// 					int[] jthLineIndex = Array.ConvertAll(jthLine.Split(), int.Parse);
+// 					if ((newLineIndex[0] - jthLineIndex[0]) * (newLineIndex[1] - jthLineIndex[1]) < 0) // 엇갈렸으면
+// 					{
+// 						noNeedDp[newElectronicLine].Add(jthLine); // 새 전기줄에 겹치는 줄 추가
+// 						noNeedDp[jthLine].Add(newElectronicLine); // 겹치는 줄에 새 전기줄 추가
+// 					}
+// 				}
+// 			}
+// 
+// 			int removeCount = 0;
+// 			while (noNeedDp.Keys.Any(s => noNeedDp[s].Count > 0))
+// 			{
+// 				int maxCount = noNeedDp.Max(s => s.Value.Count);
+// 				IEnumerable<KeyValuePair<string, List<string>>> a = noNeedDp.Where(s => s.Value.Count == maxCount);
+// 				string lineToRemove = noNeedDp.Where(s => s.Value.Count == maxCount).First().Key;
+// 				foreach (string lines in noNeedDp[lineToRemove])
+// 				{
+// 					noNeedDp[lines].Remove(lineToRemove); // 연결된놈에서 삭제할놈 삭제
+// 				}
+// 				noNeedDp[lineToRemove] = new List<string>(); // 삭제할놈이 가진 리스트 초기화
+// 				removeCount++;
+// 			}
+// 			Console.WriteLine(removeCount);
 
 			// Q9251 - LCS
+			string str1 = Console.ReadLine();
+			string str2 = Console.ReadLine();
+			int LCSlength = str2.Length;
+			int[] LCS = new int[LCSlength];
+			int startIdx = -1;
+			for (int i = 0; i < LCSlength; i++)
+			{
+				char startChar = str2[i];
+				for (int j = i + 1; j < str1.Length; j++)
+				{
 
+				}
+			}
 
 			// Q12865 - 평범한 배낭
 		}
