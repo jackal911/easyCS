@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublePriorQueue", "DoublePriorQueue\DoublePriorQueue.csproj", "{2227B6EC-406B-4F46-A901-865E2836AAB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2227B6EC-406B-4F46-A901-865E2836AAB8}.Debug|x86.ActiveCfg = Debug|x86
+		{2227B6EC-406B-4F46-A901-865E2836AAB8}.Debug|x86.Build.0 = Debug|x86
+		{2227B6EC-406B-4F46-A901-865E2836AAB8}.Release|x86.ActiveCfg = Release|x86
+		{2227B6EC-406B-4F46-A901-865E2836AAB8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

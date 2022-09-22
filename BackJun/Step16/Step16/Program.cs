@@ -383,7 +383,7 @@ namespace Step16
 				LIS[i] = count + 1;
 			}
 			Console.WriteLine(N - LIS.Max());
-			*/
+			
 			// 1차 시도 - 실패
 // 			int N = int.Parse(Console.ReadLine());
 // 			Dictionary<string, List<string>> noNeedDp = new Dictionary<string, List<string>>();
@@ -422,19 +422,44 @@ namespace Step16
 			// Q9251 - LCS
 			string str1 = Console.ReadLine();
 			string str2 = Console.ReadLine();
-			int LCSlength = str2.Length;
-			int[] LCS = new int[LCSlength];
-			int startIdx = -1;
-			for (int i = 0; i < LCSlength; i++)
+			int[] LCS = new int[str2.Length+1];
+			for (int i = 0; i < str1.Length; i++)
 			{
-				char startChar = str2[i];
-				for (int j = i + 1; j < str1.Length; j++)
+				int[] beforeLCS = LCS.ToArray();
+				for (int j = 0; j < str2.Length; j++)
 				{
-
+					if (str2[j] == str1[i])
+					{
+						LCS[j + 1] = beforeLCS[j] + 1;
+					}
+					else
+					{
+						LCS[j + 1] = Math.Max(LCS[j], LCS[j + 1]);
+					}
 				}
 			}
-
+			Console.WriteLine(LCS[str2.Length]);
+			*/
 			// Q12865 - 평범한 배낭
+			string str1 = Console.ReadLine();
+			string str2 = Console.ReadLine();
+			int[] LCS = new int[str2.Length + 1];
+			for (int i = 0; i < str1.Length; i++)
+			{
+				int[] beforeLCS = LCS.ToArray();
+				for (int j = 0; j < str2.Length; j++)
+				{
+					if (str2[j] == str1[i])
+					{
+						LCS[j + 1] = beforeLCS[j] + 1;
+					}
+					else
+					{
+						LCS[j + 1] = Math.Max(LCS[j], LCS[j + 1]);
+					}
+				}
+			}
+			Console.WriteLine(LCS[str2.Length]);
 		}
 	}
 }

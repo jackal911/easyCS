@@ -11,33 +11,26 @@ namespace JumpAndTeleport
 		{
 			public int solution(int n)
 			{
-				int[] batteryUseData = new int[100000];
-				int useCount = 0;
-				int startInt = 0;
-				while (true)
+				int count = 0;
+				while (n > 0)
 				{
-					startInt++;
-					if (batteryUseData[startInt] != 0)
+					if (n % 2 == 0)
 					{
-						useCount = batteryUseData[startInt];
-						continue;
+						n /= 2;
 					}
-					useCount++;
-					for (int i = startInt; i <= n; i *= 2)
+					else
 					{
-						if (i == n)
-						{
-							return useCount;
-						}
+						n -= 1;
+						count++;
 					}
 				}
-				return batteryUseData[n];
+				return count;
 			}
 		}
 		static void Main(string[] args)
 		{
 			Solution s = new Solution();
-			Console.WriteLine(s.solution(999999999));
+			Console.WriteLine(s.solution(999999));
 		}
 	}
 }
