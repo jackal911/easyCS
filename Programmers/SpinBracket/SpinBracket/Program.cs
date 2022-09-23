@@ -13,24 +13,75 @@ namespace SpinBracket
 			{
 				int n = 0;
 				int count = 0;
+				string str;
+				List<int> supervisor = new List<int>();
 				while (n < s.Length)
 				{
-					string str = s.Substring(n) + s.Substring(0, n);
-					int countMid = 0;
-					int countLarge = 0;
-					int countSmall = 0;
+					str = s.Substring(n) + s.Substring(0, n);
+					supervisor.Clear();
+					bool isFailed = false;
 					for (int i = 0; i < str.Length; i++)
 					{
-						if (str[i] == '}' || str[i] == ']' || str[i] == ')')
+						switch (str[i])
 						{
-							
+							case '}':
+								if (supervisor.Count == 0 || supervisor.Last() != 1)
+								{
+									isFailed = true;
+								}
+								else
+								{
+									supervisor.RemoveAt(supervisor.Count - 1);
+								}
+								break;
+							case ']':
+								if (supervisor.Count == 0 || supervisor.Last() != 2)
+								{
+									isFailed = true;
+								}
+								else
+								{
+									supervisor.RemoveAt(supervisor.Count - 1);
+								}
+								break;
+							case ')':
+								if (supervisor.Count == 0 || supervisor.Last() != 3)
+								{
+									isFailed = true;
+								}
+								else
+								{
+									supervisor.RemoveAt(supervisor.Count - 1);
+								}
+								break;
+							case '{':
+								supervisor.Add(1);
+								break;
+							case '[':
+								supervisor.Add(2);
+								break;
+							case '(':
+								supervisor.Add(3);
+								break;
+						}
+						if (isFailed == true)
+						{
+							break;
 						}
 					}
+					if (isFailed == false)
+					{
+						count++;
+					}
+					n++;
 				}
+				return count;
 			}
 		}
 		static void Main(string[] args)
 		{
+			Solution s = new Solution();
+			Console.WriteLine(s.solution("[)(]"));
 		}
 	}
 }
