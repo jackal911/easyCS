@@ -441,25 +441,22 @@ namespace Step16
 			Console.WriteLine(LCS[str2.Length]);
 			*/
 			// Q12865 - 평범한 배낭
-			string str1 = Console.ReadLine();
-			string str2 = Console.ReadLine();
-			int[] LCS = new int[str2.Length + 1];
-			for (int i = 0; i < str1.Length; i++)
+			int[] NK = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			int[] values = new int[NK[1] + 1];
+			for (int i = 0; i < NK[0]; i++)
 			{
-				int[] beforeLCS = LCS.ToArray();
-				for (int j = 0; j < str2.Length; j++)
+				int[] WV = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+				int[] beforeValues = values.ToArray(); // 이전 상태 백업
+				for (int j = 1; j <= NK[1]; j++)
 				{
-					if (str2[j] == str1[i])
+					if (j >= WV[0])
 					{
-						LCS[j + 1] = beforeLCS[j] + 1;
-					}
-					else
-					{
-						LCS[j + 1] = Math.Max(LCS[j], LCS[j + 1]);
+						values[j] = Math.Max(values[j], Math.Max(WV[1], beforeValues[j - WV[0]] + WV[1]));
 					}
 				}
+				//Console.WriteLine(String.Join(", ", values));
 			}
-			Console.WriteLine(LCS[str2.Length]);
+			Console.WriteLine(values[NK[1]]);
 		}
 	}
 }
