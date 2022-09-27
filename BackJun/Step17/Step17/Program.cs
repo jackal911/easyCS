@@ -33,7 +33,7 @@ namespace Step17
 				sw.Write(sum + "\n");
 			}
 			sw.Close();
-			*/
+			
 			// Q2559 - 수열 https://www.acmicpc.net/problem/2559
 			int[] NK = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
 			int[] temperatures = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
@@ -50,7 +50,7 @@ namespace Step17
 				}
 			}
 			Console.WriteLine(partialSum.Where((v, i) => i >= NK[1] - 1).Max());
-
+			*/
 			// Q16139 - 인간-컴퓨터 상호작용 https://www.acmicpc.net/problem/16139
 			string S = Console.ReadLine();
 			List<int[]> savePartialSum = new List<int[]>();
