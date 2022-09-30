@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
 
 namespace Step17
 {
@@ -80,26 +81,42 @@ namespace Step17
 				sw.Write(alphabetSum + "\n");
 			}
 			sw.Close();
-			*/
+			
 			// Q10986 - 나머지 합 https://www.acmicpc.net/problem/10986
-			int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
-			int[] nums = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			long[] NM = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+			//int[] nums = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			long[] nums = Array.ConvertAll(Enumerable.Range(1, 100000).ToArray(), s=>(long)s);
+			long[] mods = new long[1000];
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
 			nums[0] %= NM[1];
-			int modMCount = Convert.ToInt32(nums[0] == 0);
+			mods[nums[0]]++;
+			
 			for (int i = 1; i < NM[0]; i++)
 			{
 				nums[i] += nums[i - 1];
 				nums[i] %= NM[1];
-				modMCount += Convert.ToInt32(nums[i] == 0);
-				for (int j = 0; j < i; j++)
+				mods[nums[i]]++;
+			}
+			long modMCount = mods[0];
+			for (int i = 0; i < NM[1]; i++)
+			{
+				if (mods[i] > 0)
 				{
-					modMCount += Convert.ToInt32(nums[j] == nums[i]);
+					modMCount += (long)(mods[i] * (mods[i] - 1)) / 2;
 				}
 			}
 			// Console.WriteLine(String.Join(", ", nums));
 			Console.WriteLine(modMCount);
-
+			Console.WriteLine(sw.ElapsedMilliseconds + " ms");
+			*/
 			// Q11660 - 구간 합 구하기 5 https://www.acmicpc.net/problem/11660
+			long[] NM = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
+			int[][] board = new int[1025][];
+			for (int i = 1; i <= NM[0]; i++)
+			{
+				int[] inp = new int[1025];
+			}
 		}
 	}
 }
