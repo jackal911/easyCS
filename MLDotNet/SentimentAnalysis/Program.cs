@@ -17,8 +17,15 @@ TrainTestData LoadData(MLContext mlContext)
     return splitDataView;
 }
 
-ITransformer BuildAndTrainModel(MLContext mlContext, IDataView trainSet)
+ITransformer BuildAndTrainModel(MLContext mlContext, IDataView splitTrainSet)
 {
     var estimator = mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(SentimentData.SentimentText))
     .Append(mlContext.BinaryClassification.Trainers.SdcaLogisticRegression(labelColumnName: "Label", featureColumnName: "Features"));
+    Console.WriteLine("=============== Create and Train the Model ===============");
+    var model = estimator.Fit(splitTrainSet);
+    Console.WriteLine("=============== End of training ===============");
+    Console.WriteLine();
+    return model;
 }
+
+void Evaluate()
