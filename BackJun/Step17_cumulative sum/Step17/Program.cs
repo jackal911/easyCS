@@ -10,6 +10,17 @@ namespace Step17
 	// Step17 - 누적 합 https://www.acmicpc.net/step/48
 	class Program
 	{
+		static int convertBW(char BW, int idx)
+		{
+			if (idx % 2 == 0)
+			{
+				return BW == 'B' ? 0 : 1;
+			}
+			else
+			{
+				return BW == 'W' ? 0 : 1;
+			}
+		}
 		static void Main(string[] args)
 		{
 			/*
@@ -109,7 +120,7 @@ namespace Step17
 			// Console.WriteLine(String.Join(", ", nums));
 			Console.WriteLine(modMCount);
 			Console.WriteLine(sw.ElapsedMilliseconds + " ms");
-			*/
+			
 			// Q11660 - 구간 합 구하기 5 https://www.acmicpc.net/problem/11660
 			StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
 			int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
@@ -139,6 +150,37 @@ namespace Step17
 				sw.WriteLine(resultSum);
 			}
 			sw.Close();
+			*/
+			// 체스판 다시 칠하기 2 - https://www.acmicpc.net/problem/25682
+			StreamReader sr = new StreamReader(Console.OpenStandardInput());
+			int[] NMK = Array.ConvertAll(sr.ReadLine().Split(), int.Parse);
+			string inp;
+			int partialSum;
+			int[] intConverted, boxSum;
+			int[][] cumulativeSum = new int[NMK[0]][]; // 
+			for (int i = 0; i < NMK[0]; i++)
+			{
+				inp = sr.ReadLine();
+				intConverted = inp.Select(convertBW).ToArray(); // 처음부터 차례로 B, W, B, W, ... 차례로 나오면 0, 다른게 나오면 1로 치환
+				boxSum = new int[NMK[1]];
+				partialSum = 0;
+				for (int j = 0; j < NMK[1]; j++)
+				{
+					partialSum += intConverted[j]; // 바꿔야할 개수를 누적합으로 계산한다.
+					if (j >= NMK[2])
+					{
+						partialSum -= intConverted[j - NMK[2]]; // 누적합의 boundary 가 박스 크기를 넘으면 제일 앞 숫자를 뺀다.
+					}
+					boxSum[j] = partialSum;
+				}
+				cumulativeSum[i] = new int[NMK[1] - NMK[2] + 1];
+				Array.Copy(boxSum, NMK[2] - 1, cumulativeSum[i], 0, NMK[1] - NMK[2] + 1); // 박스가 꽉채워지는 순간(NMK[2] - 1) 부터만 필요한 부분이다.
+			} // 한 행 위에 있는 박스 Sum(가로 Sum) 은 정리가 된 상태. 이제 세로 Sum을 정리할 차례인데 속도가 나올까 걱정.
+			
+			for (int i = 0; i < NMK[0] - NMK[2] + 1; i++)
+			{
+
+			}
 		}
 	}
 }
