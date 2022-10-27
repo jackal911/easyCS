@@ -111,12 +111,34 @@ namespace Step17
 			Console.WriteLine(sw.ElapsedMilliseconds + " ms");
 			*/
 			// Q11660 - 구간 합 구하기 5 https://www.acmicpc.net/problem/11660
-			long[] NM = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
-			int[][] board = new int[1025][];
-			for (int i = 1; i <= NM[0]; i++)
+			StreamWriter sw = new StreamWriter(Console.OpenStandardOutput());
+			int[] NM = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+			int[][] board = new int[NM[0]][];
+			for (int i = 0; i < NM[0]; i++)
 			{
-				int[] inp = new int[1025];
+				int partSum = 0;
+				board[i] = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+				for (int j = 0; j < NM[0]; j++)
+				{
+					partSum += board[i][j];
+					board[i][j] = partSum;
+				}
 			}
+			for (int i = 0; i < NM[1]; i++)
+			{
+				int[] XYs = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+				int resultSum = 0;
+				for (int j = XYs[0]; j <= XYs[2]; j++)
+				{
+					resultSum += board[j - 1][XYs[3] - 1];
+					if (XYs[1] > 1)
+					{
+						resultSum -= board[j - 1][XYs[1] - 2];
+					}
+				}
+				sw.WriteLine(resultSum);
+			}
+			sw.Close();
 		}
 	}
 }
